@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: VividCortex (SolarWinds Database Performance Monitor) Alerts Hosts API
+  version: '2.0'
+  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.
+  contact:
+    name: SolarWinds DPM Support
+    url: https://docs.vividcortex.com/
+  termsOfService: https://www.solarwinds.com/legal/terms-of-use
+servers:
+- url: https://app.vividcortex.com/api/v2
+  description: Production v2 API (per-environment; scoped by the API token's environment)
+security:
+- bearerAuth: []
+tags:
+- name: Hosts
+  description: Managing the database and OS hosts monitored by DPM agents.
+paths:
+  /hosts:
+    get:
+      operationId: listHosts
+      tags:
+      - Hosts
+      summary: List monitored hosts
+      description: Return the hosts monitored during the requested time window, optionally nesting tags.
+      parameters:
+      - name: from
+        in: query
+        description: Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp.
+        schema:
+          type: integer
+      - name: until
+        in: query
+        description: End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp.
+        schema:
+          type: integer
+      - name: nest
+        in: query
+        description: Set to `tags` to include host tags in the response.
+        schema:
+          type: string
+          enum:
+          - tags
+      - name: id
+        in: query
+        description: Retrieve a single host by its numeric ID.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of hosts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostList'
+              example:
+                data:
+                - id: 203
+                  uuid: 94253fcfa6c3359b77506fdd62314c60
+                  name: prod-slice-1.example.net
+                  type: os
+                  tags: []
+                  lastSeen: 1462301121
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /hosts/{hostId}:
+    put:
+      operationId: updateHost
+      tags:
+      - Hosts
+      summary: Update a host
+      description: Update a host's name, description, or tags.
+      parameters:
+      - $ref: '#/components/parameters/HostId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostUpdate'
+            example:
+              name: New name
+              description: New description
+              tags:
+              - tag1
+              - tag2
+      responses:
+        '200':
+          description: The updated host.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteHost
+      tags:
+      - Hosts
+      summary: Delete a host
+      description: Delete the specified host, shut down its agents, and free the license. Child hosts are also deleted.
+      parameters:
+      - $ref: '#/components/parameters/HostId'
+      responses:
+        '204':
+          description: Host deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Host:
+      type: object
+      properties:
+        id:
+          type: integer
+        uuid:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        lastSeen:
+          type: integer
+          description: Unix timestamp
+    HostUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    HostList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Host'
+  responses:
+    Forbidden:
+      description: The token's role does not permit this action.
+    Unauthorized:
+      description: Missing or invalid API token.
+    NotFound:
+      description: The requested resource does not exist.
+  parameters:
+    HostId:
+      name: hostId
+      in: path
+      required: true
+      description: Numeric host ID.
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Per-environment API token created in DPM Settings → API Tokens and passed as `Authorization: Bearer <API_TOKEN>`. Tokens are role-scoped (RBAC).'

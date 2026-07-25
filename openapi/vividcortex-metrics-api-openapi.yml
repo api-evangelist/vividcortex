@@ -1,0 +1,191 @@
+openapi: 3.1.0
+info:
+  title: VividCortex (SolarWinds Database Performance Monitor) Alerts Metrics API
+  version: '2.0'
+  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.
+  contact:
+    name: SolarWinds DPM Support
+    url: https://docs.vividcortex.com/
+  termsOfService: https://www.solarwinds.com/legal/terms-of-use
+servers:
+- url: https://app.vividcortex.com/api/v2
+  description: Production v2 API (per-environment; scoped by the API token's environment)
+security:
+- bearerAuth: []
+tags:
+- name: Metrics
+  description: Active metric discovery and time-series data.
+paths:
+  /metrics:
+    get:
+      operationId: listMetrics
+      tags:
+      - Metrics
+      summary: List active metrics
+      description: List metrics seen during the time window. Supports wildcard filtering and cursor pagination via `offset`; the `x-vc-meta-more` response header signals whether more results are available.
+      parameters:
+      - name: filter
+        in: query
+        description: Wildcard pattern for metric names (e.g. `os.disk.*`). Required when `host`/`from`/`until` are used.
+        schema:
+          type: string
+      - name: host
+        in: query
+        description: Host ID(s) to query.
+        schema:
+          type: string
+      - name: from
+        in: query
+        schema:
+          type: integer
+      - name: until
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Number of metrics to return (max 20000).
+        schema:
+          type: integer
+          maximum: 20000
+      - name: offset
+        in: query
+        description: Pagination cursor.
+        schema:
+          type: string
+      - name: new
+        in: query
+        description: Set to 1 to return only newly-seen metrics.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      responses:
+        '200':
+          description: A list of active metrics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricList'
+              example:
+                data:
+                - name: os.disk.dr1.read_sectors
+                  firstSeen: 1448036400
+                  lastSeen: 1462294800
+          headers:
+            x-vc-meta-more:
+              description: Indicates whether additional results are available.
+              schema:
+                type: boolean
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/series:
+    get:
+      operationId: getMetricSeries
+      tags:
+      - Metrics
+      summary: Fetch metric time-series data
+      description: Return interpolated time-series values for one or more metrics over a time range. Also used for "top-N" ranked queries via `rank=1` and a metric template pattern.
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: until
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: host
+        in: query
+        description: Host ID(s), single or comma-separated.
+        schema:
+          type: string
+      - name: metrics
+        in: query
+        description: Metric name(s) or template pattern (e.g. `host.queries.*.*.time_us`).
+        schema:
+          type: string
+      - name: samplesize
+        in: query
+        description: Data resolution in seconds; must be a factor of 60.
+        schema:
+          type: integer
+      - name: separatehosts
+        in: query
+        description: Set to 1 to split the response by host.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: rank
+        in: query
+        description: Set to 1 for descending order by sum value (top-N).
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      - name: limit
+        in: query
+        description: Maximum number of series to return.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Time-series data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeriesList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+  schemas:
+    SeriesList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Series'
+    Series:
+      type: object
+      properties:
+        metric:
+          type: string
+        series:
+          type: array
+          items:
+            type: number
+        rank:
+          type: integer
+        total:
+          type: integer
+    MetricList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metric'
+    Metric:
+      type: object
+      properties:
+        name:
+          type: string
+        firstSeen:
+          type: integer
+        lastSeen:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Per-environment API token created in DPM Settings → API Tokens and passed as `Authorization: Bearer <API_TOKEN>`. Tokens are role-scoped (RBAC).'

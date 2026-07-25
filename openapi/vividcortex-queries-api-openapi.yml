@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: VividCortex (SolarWinds Database Performance Monitor) Alerts Queries API
+  version: '2.0'
+  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.
+  contact:
+    name: SolarWinds DPM Support
+    url: https://docs.vividcortex.com/
+  termsOfService: https://www.solarwinds.com/legal/terms-of-use
+servers:
+- url: https://app.vividcortex.com/api/v2
+  description: Production v2 API (per-environment; scoped by the API token's environment)
+security:
+- bearerAuth: []
+tags:
+- name: Queries
+  description: Observed queries, query digests, and query samples.
+paths:
+  /queries:
+    get:
+      operationId: listQueries
+      tags:
+      - Queries
+      summary: List recently-seen queries
+      description: Return query digests observed during the time window, with text/tag filtering.
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: integer
+      - name: until
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Number of results (max 20000).
+        schema:
+          type: integer
+          maximum: 20000
+      - name: new
+        in: query
+        schema:
+          type: boolean
+      - name: offset
+        in: query
+        description: Pagination using the query hex ID.
+        schema:
+          type: string
+      - name: host
+        in: query
+        description: Comma-separated host IDs.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Text filter supporting `^`, `$`, and `*`.
+        schema:
+          type: string
+      - name: tags
+        in: query
+        description: Space-separated key=value pairs.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of query digests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryList'
+              example:
+                data:
+                - id: 004fd1e630142e0b
+                  digest: select ?
+                  firstSeen: 1510587401
+                  lastSeen: 1525976100
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /queries/{queryId}:
+    get:
+      operationId: getQuery
+      tags:
+      - Queries
+      summary: Fetch a query digest by ID
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tags
+        in: query
+        description: Set to 1 to include query tags.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      responses:
+        '200':
+          description: The query digest.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /queries/samples:
+    get:
+      operationId: getQuerySamples
+      tags:
+      - Queries
+      summary: Fetch query samples
+      description: Return captured samples for a query. The `text` field is base64-encoded.
+      parameters:
+      - name: query
+        in: query
+        description: Query ID in base10.
+        schema:
+          type: string
+      - name: host
+        in: query
+        schema:
+          type: integer
+      - name: from
+        in: query
+        schema:
+          type: integer
+      - name: until
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: detail
+        in: query
+        description: Set to 1 to omit text/plan fields.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      responses:
+        '200':
+          description: Query samples.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    QueryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Query'
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+        digest:
+          type: string
+        firstSeen:
+          type: integer
+        lastSeen:
+          type: integer
+  responses:
+    NotFound:
+      description: The requested resource does not exist.
+    Unauthorized:
+      description: Missing or invalid API token.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Per-environment API token created in DPM Settings → API Tokens and passed as `Authorization: Bearer <API_TOKEN>`. Tokens are role-scoped (RBAC).'

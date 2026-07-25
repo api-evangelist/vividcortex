@@ -1,0 +1,204 @@
+openapi: 3.1.0
+info:
+  title: VividCortex (SolarWinds Database Performance Monitor) Alerts API
+  version: '2.0'
+  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.
+  contact:
+    name: SolarWinds DPM Support
+    url: https://docs.vividcortex.com/
+  termsOfService: https://www.solarwinds.com/legal/terms-of-use
+servers:
+- url: https://app.vividcortex.com/api/v2
+  description: Production v2 API (per-environment; scoped by the API token's environment)
+security:
+- bearerAuth: []
+tags:
+- name: Alerts
+  description: Alert configuration, destinations, and integrations.
+paths:
+  /config/alerts:
+    get:
+      operationId: listAlerts
+      tags:
+      - Alerts
+      summary: List alerts
+      responses:
+        '200':
+          description: A list of alerts.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAlert
+      tags:
+      - Alerts
+      summary: Create an alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alert'
+      responses:
+        '200':
+          description: The created alert.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /config/alerts/{id}:
+    put:
+      operationId: updateAlert
+      tags:
+      - Alerts
+      summary: Update an alert
+      parameters:
+      - $ref: '#/components/parameters/AlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alert'
+      responses:
+        '200':
+          description: The updated alert.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAlert
+      tags:
+      - Alerts
+      summary: Delete an alert
+      parameters:
+      - $ref: '#/components/parameters/AlertId'
+      responses:
+        '204':
+          description: Alert deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /config/alerts/{id}/config:
+    get:
+      operationId: getAlertConfig
+      tags:
+      - Alerts
+      summary: Get alert configuration
+      parameters:
+      - $ref: '#/components/parameters/AlertId'
+      responses:
+        '200':
+          description: The alert configuration.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateAlertConfig
+      tags:
+      - Alerts
+      summary: Update alert configuration
+      parameters:
+      - $ref: '#/components/parameters/AlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated alert configuration.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /config/integrations:
+    get:
+      operationId: listIntegrations
+      tags:
+      - Alerts
+      summary: List alert integrations
+      responses:
+        '200':
+          description: A list of configured integrations.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /config/destinations:
+    get:
+      operationId: listDestinations
+      tags:
+      - Alerts
+      summary: List alert destinations
+      responses:
+        '200':
+          description: A list of alert destinations.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /config/alert-opts/policy:
+    get:
+      operationId: listAlertPolicies
+      tags:
+      - Alerts
+      summary: List alert policies
+      responses:
+        '200':
+          description: A list of alert policies.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /config/alert-opts/durations:
+    get:
+      operationId: listAlertDurations
+      tags:
+      - Alerts
+      summary: List alert durations
+      responses:
+        '200':
+          description: A list of alert durations.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    AlertId:
+      name: id
+      in: path
+      required: true
+      description: Alert ID.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+    NotFound:
+      description: The requested resource does not exist.
+    BadRequest:
+      description: The request was malformed or missing required fields.
+  schemas:
+    Alert:
+      type: object
+      properties:
+        name:
+          type: string
+        annotations:
+          type: string
+        policy:
+          type: string
+        type:
+          type: integer
+          description: 1=event, 2=threshold
+        destinations:
+          type: array
+          items:
+            type: integer
+        disabled:
+          type: integer
+          enum:
+          - 0
+          - 1
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Per-environment API token created in DPM Settings → API Tokens and passed as `Authorization: Bearer <API_TOKEN>`. Tokens are role-scoped (RBAC).'

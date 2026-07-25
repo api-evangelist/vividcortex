@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: VividCortex (SolarWinds Database Performance Monitor) Alerts Events API
+  version: '2.0'
+  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.
+  contact:
+    name: SolarWinds DPM Support
+    url: https://docs.vividcortex.com/
+  termsOfService: https://www.solarwinds.com/legal/terms-of-use
+servers:
+- url: https://app.vividcortex.com/api/v2
+  description: Production v2 API (per-environment; scoped by the API token's environment)
+security:
+- bearerAuth: []
+tags:
+- name: Events
+  description: Events and annotations on the DPM timeline.
+paths:
+  /events:
+    get:
+      operationId: listEvents
+      tags:
+      - Events
+      summary: Retrieve events
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: integer
+      - name: until
+        in: query
+        schema:
+          type: integer
+      - name: host
+        in: query
+        description: Single or comma-separated host IDs.
+        schema:
+          type: string
+      - name: addGlobal
+        in: query
+        description: Set to 1 to include non-host-associated events.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createEvent
+      tags:
+      - Events
+      summary: Create an event
+      description: Create an event/annotation on the DPM timeline.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCreate'
+            example:
+              start: 1462301121
+              type: deploy
+              message: Deployed release 1.4.2
+              level: info
+      responses:
+        '200':
+          description: The created event.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+    BadRequest:
+      description: The request was malformed or missing required fields.
+  schemas:
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    EventCreate:
+      type: object
+      required:
+      - start
+      - type
+      - message
+      properties:
+        start:
+          type: integer
+          description: Unix timestamp
+        type:
+          type: string
+        message:
+          type: string
+        host:
+          type: integer
+        duration:
+          type: integer
+        level:
+          type: string
+          enum:
+          - info
+          - warn
+          - crit
+    Event:
+      type: object
+      properties:
+        start:
+          type: integer
+        uuid:
+          type: string
+        host:
+          type: integer
+        type:
+          type: string
+        duration:
+          type: integer
+        level:
+          type: string
+          enum:
+          - info
+          - warn
+          - crit
+        digest:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Per-environment API token created in DPM Settings → API Tokens and passed as `Authorization: Bearer <API_TOKEN>`. Tokens are role-scoped (RBAC).'
