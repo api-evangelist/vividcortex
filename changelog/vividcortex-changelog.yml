@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vividcortex.com/changelog/
+scheme: date
+current: '2021-06-08'
+note: >-
+  Product changelog for VividCortex / SolarWinds DPM (feature releases, not API version bumps).
+  Recent window captured verbatim from the public changelog; the feed appears to have gone
+  quiet after the 2021 SolarWinds DPM consolidation.
+entries:
+- date: '2021-06-08'
+  highlights:
+  - Visual Explain Plans — visual representation of the SQL Server EXPLAIN statement.
+  - Wait time analysis added for SQL Server.
+  - Document DB monitoring support introduced.
+- date: '2020-02-05'
+  highlights:
+  - Slack integration for embedding VividCortex data.
+  - Alert preview before creation.
+  - New Notebook templates for database health assessment.
+- date: '2019-09-18'
+  highlights:
+  - MongoDB Atlas support with encrypted connection capability.
+  - Time-comparison feature added to Explorer.
+  - MySQL health check Notebook template released.
+- date: '2019-06-26'
+  highlights:
+  - Subscription management (subscribe/unsubscribe to daily updates).
+  - Opsgenie integration.
+  - Notebook improvements.
+- date: '2019-04-02'
+  highlights:
+  - Hide VividCortex monitoring queries in the Profiler.
+  - Explorer enhancements.
+  - GitHub login support.

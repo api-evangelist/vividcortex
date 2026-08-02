@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/vividcortex-openapi.yml
+skills:
+- file: vividcortex-investigate-slow-queries.md
+  name: Investigate slow queries in VividCortex DPM
+  api: openapi/vividcortex-openapi.yml
+  operations: [listHosts, getMetricSeries, listQueries, getQuery, getQuerySamples]
+- file: vividcortex-annotate-deploys.md
+  name: Annotate deployments on the DPM timeline
+  api: openapi/vividcortex-openapi.yml
+  operations: [listHosts, createEvent, listEvents]
+- file: vividcortex-configure-alerts.md
+  name: Configure DPM alerts and destinations
+  api: openapi/vividcortex-openapi.yml
+  operations: [listAlerts, createAlert, updateAlert, getAlertConfig, listDestinations, listIntegrations]

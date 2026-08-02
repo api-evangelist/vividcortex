@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vividcortex-openapi.yml
+format: http-status
+envelope:
+  note: >-
+    The v2 API signals errors with standard HTTP status codes. The public reference does not
+    document a structured problem+json error body; success responses wrap results in a `data`
+    array. This catalog is derived from the documented authentication requirements and REST
+    semantics of the captured operations, not from a published error registry.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Request was malformed or missing required fields (e.g. creating an event without start/type/message).
+  source_operation: openapi/vividcortex-openapi.yml#createEvent
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid API token in the Authorization header.
+  remediation: "Supply a valid `Authorization: Bearer <API_TOKEN>` created in DPM Settings -> API Tokens."
+  source_operation: openapi/vividcortex-openapi.yml#listHosts
+- status: 403
+  title: Forbidden
+  meaning: The API token's assigned RBAC role does not permit the requested action.
+  remediation: Use a token whose role grants the required permission.
+  source_operation: openapi/vividcortex-openapi.yml#deleteHost
+- status: 404
+  title: Not Found
+  meaning: The requested host, query, or alert does not exist.
+  source_operation: openapi/vividcortex-openapi.yml#getQuery

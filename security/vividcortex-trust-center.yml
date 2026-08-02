@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+url: https://www.solarwinds.com/trust-center
+source: https://www.solarwinds.com/trust-center
+description: >-
+  VividCortex has no trust center on its own domains (probe 2026-07-21: trust=none on
+  vividcortex.com hosts). As a SolarWinds product (DPM), its compliance posture is
+  published on the SolarWinds Trust Center ("Security Resources", Secure by Design
+  program), which names SOC 2 and ISO/IEC 27001 certifications and GDPR compliance.
+certifications: [SOC 2, ISO 27001, GDPR]
+evidence:
+  - source: https://www.solarwinds.com/trust-center
+    status: 200
+    keywords: [soc 2, iso 27001, iso/iec 27001, gdpr, secure by design]
+    fetched: '2026-07-21'
+  - source: probe-security-programs.py vividcortex
+    kind: probe
+    result: no trust surface on vividcortex.com domains (trust=none)
+notes:
+  - Trust program is owned by parent company SolarWinds; VividCortex is sold as SolarWinds Database Performance Monitor.

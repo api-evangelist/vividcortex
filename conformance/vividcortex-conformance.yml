@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vividcortex-openapi.yml
+note: >-
+  Cross-cutting standards conformance derived from the captured OpenAPI and public docs. No
+  published compliance certifications (SOC 2 / ISO 27001 / PCI) were found on VividCortex's own
+  surface during probing; compliance posture is governed under the parent SolarWinds trust program.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses a static per-environment Bearer API token, not an OAuth2 flow.
+- id: oidc
+  conforms: false
+  evidence: OIDC/SAML apply to the web app SSO, not to API access.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are plain HTTP status codes; no application/problem+json documented.
+- id: bearer-token-auth
+  conforms: true
+  evidence: openapi securityScheme type http scheme bearer.
+- id: pagination
+  conforms: true
+  evidence: limit/offset params with x-vc-meta-more more-results header.
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key contract documented.
+- id: rest
+  conforms: true
+  evidence: Resource-oriented paths with GET/POST/PUT/DELETE verbs.

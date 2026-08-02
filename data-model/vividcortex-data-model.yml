@@ -1,0 +1,72 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vividcortex-openapi.yml
+entities:
+- name: Host
+  id: numeric id (also uuid)
+  description: A monitored database or OS host running a DPM agent.
+  fields: [id, uuid, name, type, tags, lastSeen]
+- name: Metric
+  description: A time-series metric observed on hosts.
+  fields: [name, firstSeen, lastSeen]
+- name: Series
+  description: Interpolated time-series values for a metric over a time range.
+  fields: [metric, series, rank, total]
+- name: Query
+  id: hex string id
+  description: An observed query digest (normalized SQL statement).
+  fields: [id, digest, firstSeen, lastSeen]
+- name: QuerySample
+  description: A captured sample of a query execution (text base64-encoded).
+  fields: [query, host, text, plan]
+- name: Event
+  description: An annotation/event on the DPM timeline.
+  fields: [start, uuid, host, type, duration, level, digest, message]
+- name: Alert
+  id: numeric id
+  description: An alert definition (event or threshold type).
+  fields: [name, annotations, policy, type, destinations, disabled]
+- name: AlertConfig
+  description: The trigger/threshold or event-category configuration for an alert.
+  fields: [metric, trigger, duration, reset, alert_level, hosts, host_types, categories]
+- name: Destination
+  description: A configured alert notification destination.
+- name: Integration
+  description: A configured third-party alert integration (Slack, Opsgenie, PagerDuty, etc.).
+relationships:
+- from: Series
+  to: Metric
+  type: belongs_to
+  via: metric
+- from: Series
+  to: Host
+  type: belongs_to
+  via: host
+- from: Metric
+  to: Host
+  type: belongs_to
+  via: host
+- from: Query
+  to: Host
+  type: has_many
+  via: host
+- from: QuerySample
+  to: Query
+  type: belongs_to
+  via: query
+- from: QuerySample
+  to: Host
+  type: belongs_to
+  via: host
+- from: Event
+  to: Host
+  type: belongs_to
+  via: host
+- from: Alert
+  to: Destination
+  type: has_many
+  via: destinations
+- from: Alert
+  to: AlertConfig
+  type: has_one
+  via: config

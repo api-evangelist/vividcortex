@@ -1,0 +1,26 @@
+# VividCortex (SolarWinds Database Performance Monitor)
+
+> VividCortex is a SaaS database performance monitoring platform, now part of SolarWinds and sold as SolarWinds Database Performance Monitor (DPM). Lightweight per-host agents capture and analyze every query against MySQL, PostgreSQL, MongoDB, Redis, Amazon Aurora, and SQL Server with always-on, sub-second visibility. A public REST API (v2) exposes hosts, metrics and time-series data, observed queries and samples, timeline events, and alert configuration.
+
+## API
+- [VividCortex DPM API v2 reference](https://docs.vividcortex.com/api/): REST API, base URL https://app.vividcortex.com/api/v2, Bearer API token auth.
+- [API tokens & authentication](https://docs.vividcortex.com/api/basics/api-tokens/): create a per-environment token in DPM Settings → API Tokens; pass as `Authorization: Bearer <API_TOKEN>`.
+
+## Specs (API Evangelist reconstruction)
+- [OpenAPI 3.1 (generated from docs)](openapi/vividcortex-openapi.yml)
+- [Authentication profile](authentication/vividcortex-authentication.yml)
+- [API conventions](conventions/vividcortex-conventions.yml)
+- [Error catalog](errors/vividcortex-problem-types.yml)
+- [Lifecycle](lifecycle/vividcortex-lifecycle.yml)
+- [Data model](data-model/vividcortex-data-model.yml)
+- [Agentic access contracts](agentic-access/vividcortex-agentic-access.yml)
+- [MCP candidate tool surface](mcp/vividcortex-mcp.yml)
+- [Alert webhook/notification surface](asyncapi/vividcortex-alerts-webhooks.yml)
+
+## Docs
+- [Documentation home](https://docs.vividcortex.com/)
+- [Quick start guide](https://docs.vividcortex.com/how-to-use-vividcortex/quick-start-guide/)
+- [Installing agents](https://docs.vividcortex.com/getting-started/installing/)
+- [Changelog](https://docs.vividcortex.com/changelog/)
+- [Status page](https://dpm.statuspage.io/)
+- [GitHub org](https://github.com/VividCortex)

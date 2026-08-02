@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: probed
+source: live probe of /.well-known/* on VividCortex hosts (2026-07-21)
+description: >-
+  Probe of the /.well-known/ discovery surface on VividCortex / SolarWinds DPM hosts.
+  No machine-readable discovery documents were found: the app and docs hosts return
+  honest 404s for every probed path, and the legacy marketing domains
+  (vividcortex.com / www.vividcortex.com) soft-redirect every path — including
+  /.well-known/* — to the SolarWinds database-performance-monitoring-software
+  product page (HTTP 200 HTML, not a real well-known document). Absence is recorded
+  as valid data; no WellKnown rating pointer is emitted because no catalog was found.
+  API authentication is a static per-environment Bearer token, so there is no OIDC /
+  OAuth authorization-server discovery surface. Security-contact discovery lives at
+  the SolarWinds vulnerability disclosure policy captured in
+  security/vividcortex-vulnerability-disclosure.yml, not in /.well-known/security.txt.
+hosts:
+  - host: https://app.vividcortex.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://docs.vividcortex.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://www.vividcortex.com
+    note: >-
+      Every path returns HTTP 200 but is a soft redirect to
+      https://www.solarwinds.com/database-performance-monitoring-software (HTML product
+      page) — treated as not-found for well-known purposes.
+    documents:
+      - {path: /.well-known/security.txt, status: 200, soft_redirect: true}
+      - {path: /.well-known/openid-configuration, status: 200, soft_redirect: true}
+      - {path: /.well-known/oauth-authorization-server, status: 200, soft_redirect: true}
+      - {path: /.well-known/api-catalog, status: 200, soft_redirect: true}
+      - {path: /.well-known/ai-plugin.json, status: 200, soft_redirect: true}
+  - host: https://www.solarwinds.com
+    note: Parent-company host probed because VividCortex is sold as SolarWinds DPM.
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /security.txt, status: 404}

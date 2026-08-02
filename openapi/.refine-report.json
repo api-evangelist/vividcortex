@@ -1,0 +1,22 @@
+{
+  "provider": "vividcortex",
+  "sources": [
+    "vividcortex-alerts-api-openapi.yml",
+    "vividcortex-events-api-openapi.yml",
+    "vividcortex-hosts-api-openapi.yml",
+    "vividcortex-metrics-api-openapi.yml",
+    "vividcortex-queries-api-openapi.yml"
+  ],
+  "outputs": [
+    "vividcortex-alerts-api-openapi.yml",
+    "vividcortex-events-api-openapi.yml",
+    "vividcortex-hosts-api-openapi.yml",
+    "vividcortex-metrics-api-openapi.yml",
+    "vividcortex-queries-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

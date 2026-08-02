@@ -1,0 +1,1514 @@
+{
+  "info": {
+    "_postman_id": "aa388821-da60-41ba-994a-3a643d082a54",
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts API",
+    "description": "REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ \u2014 every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.\n\nContact Support:\n Name: SolarWinds DPM Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:27:46.000Z",
+    "updatedAt": "2026-07-28T03:27:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aa388821-da60-41ba-994a-3a643d082a54"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "alerts",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "config",
+                  "item": [
+                    {
+                      "name": "Get alert configuration",
+                      "id": "c236a046-db4d-4ad1-8878-20516b149005",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "id": "29ddd582-524c-4368-9517-55fe6cbc533d",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) Alert ID."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "9b492661-7384-46f0-9cdb-64900e0757f4",
+                          "name": "The alert configuration.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/config/alerts/:id/config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "config",
+                                "alerts",
+                                ":id",
+                                "config"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:27:46.000Z",
+                          "updatedAt": "2026-07-28T03:27:46.000Z",
+                          "uid": "35240-9b492661-7384-46f0-9cdb-64900e0757f4"
+                        },
+                        {
+                          "id": "00b2b852-2c50-47a3-8c8e-8da34fe570d4",
+                          "name": "Missing or invalid API token.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/config/alerts/:id/config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "config",
+                                "alerts",
+                                ":id",
+                                "config"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:27:46.000Z",
+                          "updatedAt": "2026-07-28T03:27:46.000Z",
+                          "uid": "35240-00b2b852-2c50-47a3-8c8e-8da34fe570d4"
+                        },
+                        {
+                          "id": "9cd16499-ef64-4052-9c58-6a16e5988efe",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/config/alerts/:id/config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "config",
+                                "alerts",
+                                ":id",
+                                "config"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:27:46.000Z",
+                          "updatedAt": "2026-07-28T03:27:46.000Z",
+                          "uid": "35240-9cd16499-ef64-4052-9c58-6a16e5988efe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-c236a046-db4d-4ad1-8878-20516b149005"
+                    },
+                    {
+                      "name": "Update alert configuration",
+                      "id": "f748a29c-078e-4b5a-ba63-9d212469709e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "id": "62826bd1-1377-45e6-b410-a92bbc1fc5d9",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) Alert ID."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "63e9d880-9878-4e92-a706-c6e6affd4ebb",
+                          "name": "The updated alert configuration.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/config/alerts/:id/config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "config",
+                                "alerts",
+                                ":id",
+                                "config"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:27:46.000Z",
+                          "updatedAt": "2026-07-28T03:27:46.000Z",
+                          "uid": "35240-63e9d880-9878-4e92-a706-c6e6affd4ebb"
+                        },
+                        {
+                          "id": "522eb742-fbbc-44a8-bf57-47746b7a8d62",
+                          "name": "Missing or invalid API token.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/config/alerts/:id/config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "config",
+                                "alerts",
+                                ":id",
+                                "config"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:27:46.000Z",
+                          "updatedAt": "2026-07-28T03:27:46.000Z",
+                          "uid": "35240-522eb742-fbbc-44a8-bf57-47746b7a8d62"
+                        },
+                        {
+                          "id": "e3302dab-11d7-48f0-8554-839f485e64d4",
+                          "name": "The requested resource does not exist.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/config/alerts/:id/config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "config",
+                                "alerts",
+                                ":id",
+                                "config"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:27:46.000Z",
+                          "updatedAt": "2026-07-28T03:27:46.000Z",
+                          "uid": "35240-e3302dab-11d7-48f0-8554-839f485e64d4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-f748a29c-078e-4b5a-ba63-9d212469709e"
+                    }
+                  ],
+                  "id": "2fddb7ec-5e1f-4e75-af15-afc85220395d",
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-2fddb7ec-5e1f-4e75-af15-afc85220395d"
+                },
+                {
+                  "name": "Update an alert",
+                  "id": "0f4d45a8-be08-4b17-a18f-966244b9a596",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "10294086-1bff-401a-ae3e-6c324a62537c",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) Alert ID."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1fe2cd37-9e01-499a-bff1-d445a266c960",
+                      "name": "The updated alert.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-1fe2cd37-9e01-499a-bff1-d445a266c960"
+                    },
+                    {
+                      "id": "30af6282-ce5d-49a3-9ac4-5320009f49e0",
+                      "name": "Missing or invalid API token.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-30af6282-ce5d-49a3-9ac4-5320009f49e0"
+                    },
+                    {
+                      "id": "c40fc720-5c25-46a1-8c63-cdbc2ed330a4",
+                      "name": "The requested resource does not exist.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-c40fc720-5c25-46a1-8c63-cdbc2ed330a4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-0f4d45a8-be08-4b17-a18f-966244b9a596"
+                },
+                {
+                  "name": "Delete an alert",
+                  "id": "b4bbb537-4b39-41b7-a2ea-e3f90fefe76d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "46e9d807-5148-4080-98a7-d1eef4a33dfe",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) Alert ID."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "212ae775-1f40-429e-9f1c-8ffa3cd53b2a",
+                      "name": "Alert deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-212ae775-1f40-429e-9f1c-8ffa3cd53b2a"
+                    },
+                    {
+                      "id": "c75e31ce-b3b7-4ddb-8005-571117ec8e5f",
+                      "name": "Missing or invalid API token.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-c75e31ce-b3b7-4ddb-8005-571117ec8e5f"
+                    },
+                    {
+                      "id": "f9158b9d-a88d-486d-b819-ba42dbf4f61b",
+                      "name": "The requested resource does not exist.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alerts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alerts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-f9158b9d-a88d-486d-b819-ba42dbf4f61b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-b4bbb537-4b39-41b7-a2ea-e3f90fefe76d"
+                }
+              ],
+              "id": "dd41b192-2f98-4dd5-bfad-9e8cfc73982f",
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-dd41b192-2f98-4dd5-bfad-9e8cfc73982f"
+            },
+            {
+              "name": "List alerts",
+              "id": "71603e4d-3ebb-439a-ae59-37ead2421716",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/config/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "alerts"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "45b0f752-e8a8-4eff-b555-8c25ebdf5e0b",
+                  "name": "A list of alerts.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-45b0f752-e8a8-4eff-b555-8c25ebdf5e0b"
+                },
+                {
+                  "id": "9e839192-d287-439e-8b73-af4a71e5d43b",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-9e839192-d287-439e-8b73-af4a71e5d43b"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-71603e4d-3ebb-439a-ae59-37ead2421716"
+            },
+            {
+              "name": "Create an alert",
+              "id": "0ee14c65-14b1-4b5f-b602-52e4a84f9e01",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "alerts"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "83c3233c-157b-487d-acf6-870247caa5c0",
+                  "name": "The created alert.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-83c3233c-157b-487d-acf6-870247caa5c0"
+                },
+                {
+                  "id": "882896cc-6ac6-445f-90cd-2f454c83d953",
+                  "name": "The request was malformed or missing required fields.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-882896cc-6ac6-445f-90cd-2f454c83d953"
+                },
+                {
+                  "id": "314018c3-4a44-4570-9e3e-c790d1695090",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"annotations\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disabled\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alerts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alerts"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-314018c3-4a44-4570-9e3e-c790d1695090"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-0ee14c65-14b1-4b5f-b602-52e4a84f9e01"
+            }
+          ],
+          "id": "04b454ef-0e68-4982-8725-f6529b679e7f",
+          "createdAt": "2026-07-28T03:27:46.000Z",
+          "updatedAt": "2026-07-28T03:27:46.000Z",
+          "uid": "35240-04b454ef-0e68-4982-8725-f6529b679e7f"
+        },
+        {
+          "name": "integrations",
+          "item": [
+            {
+              "name": "List alert integrations",
+              "id": "fb99907d-2bf7-44ab-8747-34d5c4bd30ca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/config/integrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "integrations"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c6a7b7b6-e9e2-4297-b441-e3e87a3ba79a",
+                  "name": "A list of configured integrations.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-c6a7b7b6-e9e2-4297-b441-e3e87a3ba79a"
+                },
+                {
+                  "id": "b1ad2432-3e0c-4154-8359-c9c48c62cebd",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-b1ad2432-3e0c-4154-8359-c9c48c62cebd"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-fb99907d-2bf7-44ab-8747-34d5c4bd30ca"
+            }
+          ],
+          "id": "25521e30-6a0d-4f9d-a230-0786803c79e2",
+          "createdAt": "2026-07-28T03:27:46.000Z",
+          "updatedAt": "2026-07-28T03:27:46.000Z",
+          "uid": "35240-25521e30-6a0d-4f9d-a230-0786803c79e2"
+        },
+        {
+          "name": "destinations",
+          "item": [
+            {
+              "name": "List alert destinations",
+              "id": "1c158d69-6bc4-4f6d-9341-afbac5424090",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/config/destinations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "destinations"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "aeb82a17-a6f6-4f1c-9ffe-c5cb8b86b5d9",
+                  "name": "A list of alert destinations.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "destinations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-aeb82a17-a6f6-4f1c-9ffe-c5cb8b86b5d9"
+                },
+                {
+                  "id": "40755821-8ecc-4f66-a4e0-881bf7402294",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "destinations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-40755821-8ecc-4f66-a4e0-881bf7402294"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-1c158d69-6bc4-4f6d-9341-afbac5424090"
+            }
+          ],
+          "id": "91bde9a0-42d9-4c02-9cef-b077b6335f1f",
+          "createdAt": "2026-07-28T03:27:46.000Z",
+          "updatedAt": "2026-07-28T03:27:46.000Z",
+          "uid": "35240-91bde9a0-42d9-4c02-9cef-b077b6335f1f"
+        },
+        {
+          "name": "alert-opts",
+          "item": [
+            {
+              "name": "policy",
+              "item": [
+                {
+                  "name": "List alert policies",
+                  "id": "8608a719-a8bd-467e-aca4-f8011a9dd40a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alert-opts/policy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alert-opts",
+                        "policy"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "20bdbcd4-d02b-470f-a5f6-f22c140fc426",
+                      "name": "A list of alert policies.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alert-opts/policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alert-opts",
+                            "policy"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-20bdbcd4-d02b-470f-a5f6-f22c140fc426"
+                    },
+                    {
+                      "id": "fe2fdc6d-798c-4983-b62b-b0664aa1c6b1",
+                      "name": "Missing or invalid API token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alert-opts/policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alert-opts",
+                            "policy"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-fe2fdc6d-798c-4983-b62b-b0664aa1c6b1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-8608a719-a8bd-467e-aca4-f8011a9dd40a"
+                }
+              ],
+              "id": "a07cd2c4-2c95-4e94-a688-7961a85d9f24",
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-a07cd2c4-2c95-4e94-a688-7961a85d9f24"
+            },
+            {
+              "name": "durations",
+              "item": [
+                {
+                  "name": "List alert durations",
+                  "id": "845cda38-0ef3-40af-bc04-c3f53ecdef06",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/alert-opts/durations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "alert-opts",
+                        "durations"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "981ce2b8-cc41-4f35-b30d-e0c56adccce1",
+                      "name": "A list of alert durations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alert-opts/durations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alert-opts",
+                            "durations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-981ce2b8-cc41-4f35-b30d-e0c56adccce1"
+                    },
+                    {
+                      "id": "a3d193be-9dca-4a45-9387-c7c59cbc2063",
+                      "name": "Missing or invalid API token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/alert-opts/durations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "alert-opts",
+                            "durations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:27:46.000Z",
+                      "updatedAt": "2026-07-28T03:27:46.000Z",
+                      "uid": "35240-a3d193be-9dca-4a45-9387-c7c59cbc2063"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:27:46.000Z",
+                  "updatedAt": "2026-07-28T03:27:46.000Z",
+                  "uid": "35240-845cda38-0ef3-40af-bc04-c3f53ecdef06"
+                }
+              ],
+              "id": "473cb4f8-2ad7-4242-aeef-b3f187f33597",
+              "createdAt": "2026-07-28T03:27:46.000Z",
+              "updatedAt": "2026-07-28T03:27:46.000Z",
+              "uid": "35240-473cb4f8-2ad7-4242-aeef-b3f187f33597"
+            }
+          ],
+          "id": "9fa2033e-8270-48c8-906b-7f85f1f84265",
+          "createdAt": "2026-07-28T03:27:46.000Z",
+          "updatedAt": "2026-07-28T03:27:46.000Z",
+          "uid": "35240-9fa2033e-8270-48c8-906b-7f85f1f84265"
+        }
+      ],
+      "id": "0aa830c5-e941-431d-9ea5-6455c06331a7",
+      "createdAt": "2026-07-28T03:27:46.000Z",
+      "updatedAt": "2026-07-28T03:27:46.000Z",
+      "uid": "35240-0aa830c5-e941-431d-9ea5-6455c06331a7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.vividcortex.com/api/v2"
+    }
+  ]
+}

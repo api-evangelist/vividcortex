@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/VividCortex
+note: >-
+  VividCortex / SolarWinds DPM does not ship an embeddable UI element library. The one
+  first-party client-side component is the official Grafana data source plugin, which renders
+  DPM metrics inside Grafana dashboards via the v2 metrics API.
+components:
+- family: Grafana
+  name: SolarWinds DPM (VividCortex) Grafana data source
+  kind: grafana-datasource-plugin
+  language: TypeScript
+  repo: https://github.com/VividCortex/grafana-datasource
+  docs: https://docs.vividcortex.com/api/metrics/grafana/
+  official: true
+  description: >-
+    Grafana data source plugin that connects to the VividCortex/DPM v2 metrics API so DPM
+    time-series metrics can be queried and visualized inside Grafana dashboards.

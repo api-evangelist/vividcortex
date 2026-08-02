@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: searched
+source: npm registry + PyPI + https://github.com/VividCortex (2026-07-21)
+description: >-
+  VividCortex / SolarWinds DPM ships no first-party general-purpose client SDKs for its
+  v2 REST API on npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, or
+  crates.io — the API is consumed directly over HTTP with a Bearer token. The
+  VividCortex GitHub org is rich in open-source Go utility libraries (ewma, godaemon,
+  mysqlerr, siesta) and agent-deployment packaging (docker, chef-cookbook, puppet,
+  heroku-buildpack-vividcortex), but none are API client libraries. The one published
+  first-party package that consumes the API is the archived hubot-vividcortex chatops
+  script; the first-party Grafana data source plugin is catalogued in
+  components/vividcortex-components.yml. No SDKs rating pointer is emitted because no
+  general-purpose official client library exists.
+packages:
+  - language: coffeescript
+    registry: npm
+    name: hubot-vividcortex
+    url: https://www.npmjs.com/package/hubot-vividcortex
+    install: npm install hubot-vividcortex
+    official: true
+    kind: chatops-script
+    status: archived
+    repo: https://github.com/VividCortex/hubot-vividcortex
+    notes: Hubot script that talks to the VividCortex API; repo archived, last npm activity 2022.
+  - language: dockerfile
+    registry: github
+    name: VividCortex/docker
+    url: https://github.com/VividCortex/docker
+    install: see repository
+    official: true
+    kind: agent-packaging
+    notes: Docker container packaging for VividCortex/DPM monitoring agents (not an API client).
+  - language: ruby
+    registry: github
+    name: VividCortex/chef-cookbook
+    url: https://github.com/VividCortex/chef-cookbook
+    install: see repository
+    official: true
+    kind: agent-packaging
+    notes: Chef cookbook for installing VividCortex/DPM agents.
+  - language: puppet
+    registry: github
+    name: VividCortex/puppet
+    url: https://github.com/VividCortex/puppet
+    install: see repository
+    official: true
+    kind: agent-packaging
+    notes: Puppet example for installing the VividCortex repository/agents.
+  - language: shell
+    registry: github
+    name: VividCortex/heroku-buildpack-vividcortex
+    url: https://github.com/VividCortex/heroku-buildpack-vividcortex
+    install: see repository
+    official: true
+    kind: agent-packaging
+    status: archived
+    notes: Heroku buildpack to run VividCortex agents in a dyno.

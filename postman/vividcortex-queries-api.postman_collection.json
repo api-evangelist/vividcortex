@@ -1,0 +1,652 @@
+{
+  "info": {
+    "_postman_id": "33e8037a-a869-44a6-a44c-193e9a838ac3",
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Queries API",
+    "description": "REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ \u2014 every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.\n\nContact Support:\n Name: SolarWinds DPM Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:27:50.000Z",
+    "updatedAt": "2026-07-28T03:27:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33e8037a-a869-44a6-a44c-193e9a838ac3"
+  },
+  "item": [
+    {
+      "name": "queries",
+      "item": [
+        {
+          "name": "{queryId}",
+          "item": [
+            {
+              "name": "Fetch a query digest by ID",
+              "id": "fbaa01b8-01d6-4050-810b-8f6d29254c1b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries/:queryId?tags=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries",
+                    ":queryId"
+                  ],
+                  "query": [
+                    {
+                      "description": "Set to 1 to include query tags.",
+                      "key": "tags",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "3f45d5db-521d-4dff-9d5d-897e39f583c8",
+                      "key": "queryId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "feea420d-bb6c-42e0-ade2-f9afe3aa9d6e",
+                  "name": "The query digest.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId?tags=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to 1 to include query tags.",
+                          "key": "tags",
+                          "value": "1"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"digest\": \"<string>\",\n      \"firstSeen\": \"<integer>\",\n      \"lastSeen\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"digest\": \"<string>\",\n      \"firstSeen\": \"<integer>\",\n      \"lastSeen\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:27:50.000Z",
+                  "updatedAt": "2026-07-28T03:27:50.000Z",
+                  "uid": "35240-feea420d-bb6c-42e0-ade2-f9afe3aa9d6e"
+                },
+                {
+                  "id": "e5437872-99c1-4da8-96e0-b0d1630513ec",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId?tags=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to 1 to include query tags.",
+                          "key": "tags",
+                          "value": "1"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:50.000Z",
+                  "updatedAt": "2026-07-28T03:27:50.000Z",
+                  "uid": "35240-e5437872-99c1-4da8-96e0-b0d1630513ec"
+                },
+                {
+                  "id": "5c37f349-1aff-44e2-9740-757b0dc76f77",
+                  "name": "The requested resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId?tags=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to 1 to include query tags.",
+                          "key": "tags",
+                          "value": "1"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:50.000Z",
+                  "updatedAt": "2026-07-28T03:27:50.000Z",
+                  "uid": "35240-5c37f349-1aff-44e2-9740-757b0dc76f77"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:50.000Z",
+              "updatedAt": "2026-07-28T03:27:50.000Z",
+              "uid": "35240-fbaa01b8-01d6-4050-810b-8f6d29254c1b"
+            }
+          ],
+          "id": "d660a5b2-4282-4249-ba38-2c11cb7b6400",
+          "createdAt": "2026-07-28T03:27:50.000Z",
+          "updatedAt": "2026-07-28T03:27:50.000Z",
+          "uid": "35240-d660a5b2-4282-4249-ba38-2c11cb7b6400"
+        },
+        {
+          "name": "samples",
+          "item": [
+            {
+              "name": "Fetch query samples",
+              "id": "e2a19870-8c23-4913-ab2c-b8ed66dd8f25",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/queries/samples?query=<string>&host=<integer>&from=<integer>&until=<integer>&limit=<integer>&detail=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries",
+                    "samples"
+                  ],
+                  "query": [
+                    {
+                      "description": "Query ID in base10.",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Set to 1 to omit text/plan fields.",
+                      "key": "detail",
+                      "value": "1"
+                    }
+                  ]
+                },
+                "description": "Return captured samples for a query. The `text` field is base64-encoded."
+              },
+              "response": [
+                {
+                  "id": "73e5c972-3d9c-454c-abc1-8667eceabaed",
+                  "name": "Query samples.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/samples?query=<string>&host=<integer>&from=<integer>&until=<integer>&limit=<integer>&detail=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        "samples"
+                      ],
+                      "query": [
+                        {
+                          "description": "Query ID in base10.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "host",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "from",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "until",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to 1 to omit text/plan fields.",
+                          "key": "detail",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:50.000Z",
+                  "updatedAt": "2026-07-28T03:27:50.000Z",
+                  "uid": "35240-73e5c972-3d9c-454c-abc1-8667eceabaed"
+                },
+                {
+                  "id": "a2fbef6e-c5d7-4483-bdc9-88c43a58ca12",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/samples?query=<string>&host=<integer>&from=<integer>&until=<integer>&limit=<integer>&detail=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        "samples"
+                      ],
+                      "query": [
+                        {
+                          "description": "Query ID in base10.",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "host",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "from",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "until",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to 1 to omit text/plan fields.",
+                          "key": "detail",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:50.000Z",
+                  "updatedAt": "2026-07-28T03:27:50.000Z",
+                  "uid": "35240-a2fbef6e-c5d7-4483-bdc9-88c43a58ca12"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:50.000Z",
+              "updatedAt": "2026-07-28T03:27:50.000Z",
+              "uid": "35240-e2a19870-8c23-4913-ab2c-b8ed66dd8f25"
+            }
+          ],
+          "id": "86e77d33-37d8-447d-a3b9-1e86ef6bf491",
+          "createdAt": "2026-07-28T03:27:50.000Z",
+          "updatedAt": "2026-07-28T03:27:50.000Z",
+          "uid": "35240-86e77d33-37d8-447d-a3b9-1e86ef6bf491"
+        },
+        {
+          "name": "List recently-seen queries",
+          "id": "ee411be0-6094-4634-8f3b-0e956968d707",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/queries?from=<integer>&until=<integer>&limit=<integer>&new=<boolean>&offset=<string>&host=<string>&filter=<string>&tags=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "queries"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "until",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Number of results (max 20000).",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "new",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Pagination using the query hex ID.",
+                  "key": "offset",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated host IDs.",
+                  "key": "host",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Text filter supporting `^`, `$`, and `*`.",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Space-separated key=value pairs.",
+                  "key": "tags",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Return query digests observed during the time window, with text/tag filtering."
+          },
+          "response": [
+            {
+              "id": "8b3bd0d4-9f27-4eb3-a651-67a8d66ff479",
+              "name": "A list of query digests.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries?from=<integer>&until=<integer>&limit=<integer>&new=<boolean>&offset=<string>&host=<string>&filter=<string>&tags=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results (max 20000).",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "new",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Pagination using the query hex ID.",
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated host IDs.",
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Text filter supporting `^`, `$`, and `*`.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Space-separated key=value pairs.",
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"digest\": \"<string>\",\n      \"firstSeen\": \"<integer>\",\n      \"lastSeen\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"digest\": \"<string>\",\n      \"firstSeen\": \"<integer>\",\n      \"lastSeen\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:27:50.000Z",
+              "updatedAt": "2026-07-28T03:27:50.000Z",
+              "uid": "35240-8b3bd0d4-9f27-4eb3-a651-67a8d66ff479"
+            },
+            {
+              "id": "df826b08-1003-4e80-bbd5-3dc74b7fd046",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries?from=<integer>&until=<integer>&limit=<integer>&new=<boolean>&offset=<string>&host=<string>&filter=<string>&tags=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results (max 20000).",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "new",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Pagination using the query hex ID.",
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated host IDs.",
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Text filter supporting `^`, `$`, and `*`.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Space-separated key=value pairs.",
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:50.000Z",
+              "updatedAt": "2026-07-28T03:27:50.000Z",
+              "uid": "35240-df826b08-1003-4e80-bbd5-3dc74b7fd046"
+            }
+          ],
+          "createdAt": "2026-07-28T03:27:50.000Z",
+          "updatedAt": "2026-07-28T03:27:50.000Z",
+          "uid": "35240-ee411be0-6094-4634-8f3b-0e956968d707"
+        }
+      ],
+      "id": "d9333822-f21e-4c5e-b50b-a0c86a0d16c6",
+      "createdAt": "2026-07-28T03:27:50.000Z",
+      "updatedAt": "2026-07-28T03:27:50.000Z",
+      "uid": "35240-d9333822-f21e-4c5e-b50b-a0c86a0d16c6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.vividcortex.com/api/v2"
+    }
+  ]
+}

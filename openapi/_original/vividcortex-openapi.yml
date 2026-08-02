@@ -1,0 +1,579 @@
+openapi: 3.1.0
+# generated: '2026-07-21'
+# method: generated
+# source: https://docs.vividcortex.com/api/ (faithfully modeled from the published v2 REST API reference; VividCortex publishes no machine-readable OpenAPI)
+info:
+  title: VividCortex (SolarWinds Database Performance Monitor) API
+  version: "2.0"
+  description: >-
+    REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM).
+    Programmatic access to monitored hosts, metrics and time-series data, observed
+    queries and their samples, events/annotations, and alert configuration. Modeled
+    faithfully from the public reference at https://docs.vividcortex.com/api/ —
+    every path, method, parameter and example response below is taken from the
+    published documentation. VividCortex does not publish a machine-readable
+    OpenAPI document; this is an API Evangelist reconstruction for discovery and
+    governance and is not an authoritative provider artifact.
+  contact:
+    name: SolarWinds DPM Support
+    url: https://docs.vividcortex.com/
+  termsOfService: https://www.solarwinds.com/legal/terms-of-use
+servers:
+  - url: https://app.vividcortex.com/api/v2
+    description: Production v2 API (per-environment; scoped by the API token's environment)
+security:
+  - bearerAuth: []
+tags:
+  - name: Hosts
+    description: Managing the database and OS hosts monitored by DPM agents.
+  - name: Metrics
+    description: Active metric discovery and time-series data.
+  - name: Queries
+    description: Observed queries, query digests, and query samples.
+  - name: Events
+    description: Events and annotations on the DPM timeline.
+  - name: Alerts
+    description: Alert configuration, destinations, and integrations.
+paths:
+  /hosts:
+    get:
+      operationId: listHosts
+      tags: [Hosts]
+      summary: List monitored hosts
+      description: Return the hosts monitored during the requested time window, optionally nesting tags.
+      parameters:
+        - name: from
+          in: query
+          description: Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp.
+          schema: { type: integer }
+        - name: until
+          in: query
+          description: End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp.
+          schema: { type: integer }
+        - name: nest
+          in: query
+          description: Set to `tags` to include host tags in the response.
+          schema: { type: string, enum: [tags] }
+        - name: id
+          in: query
+          description: Retrieve a single host by its numeric ID.
+          schema: { type: integer }
+      responses:
+        '200':
+          description: A list of hosts.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HostList' }
+              example:
+                data:
+                  - id: 203
+                    uuid: "94253fcfa6c3359b77506fdd62314c60"
+                    name: "prod-slice-1.example.net"
+                    type: "os"
+                    tags: []
+                    lastSeen: 1462301121
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /hosts/{hostId}:
+    put:
+      operationId: updateHost
+      tags: [Hosts]
+      summary: Update a host
+      description: Update a host's name, description, or tags.
+      parameters:
+        - $ref: '#/components/parameters/HostId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/HostUpdate' }
+            example: { name: "New name", description: "New description", tags: ["tag1", "tag2"] }
+      responses:
+        '200': { description: The updated host. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      operationId: deleteHost
+      tags: [Hosts]
+      summary: Delete a host
+      description: >-
+        Delete the specified host, shut down its agents, and free the license.
+        Child hosts are also deleted.
+      parameters:
+        - $ref: '#/components/parameters/HostId'
+      responses:
+        '204': { description: Host deleted. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /metrics:
+    get:
+      operationId: listMetrics
+      tags: [Metrics]
+      summary: List active metrics
+      description: >-
+        List metrics seen during the time window. Supports wildcard filtering and
+        cursor pagination via `offset`; the `x-vc-meta-more` response header signals
+        whether more results are available.
+      parameters:
+        - name: filter
+          in: query
+          description: Wildcard pattern for metric names (e.g. `os.disk.*`). Required when `host`/`from`/`until` are used.
+          schema: { type: string }
+        - name: host
+          in: query
+          description: Host ID(s) to query.
+          schema: { type: string }
+        - name: from
+          in: query
+          schema: { type: integer }
+        - name: until
+          in: query
+          schema: { type: integer }
+        - name: limit
+          in: query
+          description: Number of metrics to return (max 20000).
+          schema: { type: integer, maximum: 20000 }
+        - name: offset
+          in: query
+          description: Pagination cursor.
+          schema: { type: string }
+        - name: new
+          in: query
+          description: Set to 1 to return only newly-seen metrics.
+          schema: { type: integer, enum: [0, 1] }
+      responses:
+        '200':
+          description: A list of active metrics.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MetricList' }
+              example:
+                data:
+                  - name: "os.disk.dr1.read_sectors"
+                    firstSeen: 1448036400
+                    lastSeen: 1462294800
+          headers:
+            x-vc-meta-more:
+              description: Indicates whether additional results are available.
+              schema: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /metrics/series:
+    get:
+      operationId: getMetricSeries
+      tags: [Metrics]
+      summary: Fetch metric time-series data
+      description: >-
+        Return interpolated time-series values for one or more metrics over a time
+        range. Also used for "top-N" ranked queries via `rank=1` and a metric
+        template pattern.
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema: { type: integer }
+        - name: until
+          in: query
+          required: true
+          schema: { type: integer }
+        - name: host
+          in: query
+          description: Host ID(s), single or comma-separated.
+          schema: { type: string }
+        - name: metrics
+          in: query
+          description: Metric name(s) or template pattern (e.g. `host.queries.*.*.time_us`).
+          schema: { type: string }
+        - name: samplesize
+          in: query
+          description: Data resolution in seconds; must be a factor of 60.
+          schema: { type: integer }
+        - name: separatehosts
+          in: query
+          description: Set to 1 to split the response by host.
+          schema: { type: integer, enum: [0, 1] }
+        - name: rank
+          in: query
+          description: Set to 1 for descending order by sum value (top-N).
+          schema: { type: integer, enum: [0, 1] }
+        - name: limit
+          in: query
+          description: Maximum number of series to return.
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Time-series data.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SeriesList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /queries:
+    get:
+      operationId: listQueries
+      tags: [Queries]
+      summary: List recently-seen queries
+      description: Return query digests observed during the time window, with text/tag filtering.
+      parameters:
+        - name: from
+          in: query
+          schema: { type: integer }
+        - name: until
+          in: query
+          schema: { type: integer }
+        - name: limit
+          in: query
+          description: Number of results (max 20000).
+          schema: { type: integer, maximum: 20000 }
+        - name: new
+          in: query
+          schema: { type: boolean }
+        - name: offset
+          in: query
+          description: Pagination using the query hex ID.
+          schema: { type: string }
+        - name: host
+          in: query
+          description: Comma-separated host IDs.
+          schema: { type: string }
+        - name: filter
+          in: query
+          description: Text filter supporting `^`, `$`, and `*`.
+          schema: { type: string }
+        - name: tags
+          in: query
+          description: Space-separated key=value pairs.
+          schema: { type: string }
+      responses:
+        '200':
+          description: A list of query digests.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QueryList' }
+              example:
+                data:
+                  - id: "004fd1e630142e0b"
+                    digest: "select ?"
+                    firstSeen: 1510587401
+                    lastSeen: 1525976100
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /queries/{queryId}:
+    get:
+      operationId: getQuery
+      tags: [Queries]
+      summary: Fetch a query digest by ID
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: tags
+          in: query
+          description: Set to 1 to include query tags.
+          schema: { type: integer, enum: [0, 1] }
+      responses:
+        '200':
+          description: The query digest.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QueryList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /queries/samples:
+    get:
+      operationId: getQuerySamples
+      tags: [Queries]
+      summary: Fetch query samples
+      description: Return captured samples for a query. The `text` field is base64-encoded.
+      parameters:
+        - name: query
+          in: query
+          description: Query ID in base10.
+          schema: { type: string }
+        - name: host
+          in: query
+          schema: { type: integer }
+        - name: from
+          in: query
+          schema: { type: integer }
+        - name: until
+          in: query
+          schema: { type: integer }
+        - name: limit
+          in: query
+          schema: { type: integer }
+        - name: detail
+          in: query
+          description: Set to 1 to omit text/plan fields.
+          schema: { type: integer, enum: [0, 1] }
+      responses:
+        '200':
+          description: Query samples.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /events:
+    get:
+      operationId: listEvents
+      tags: [Events]
+      summary: Retrieve events
+      parameters:
+        - name: from
+          in: query
+          schema: { type: integer }
+        - name: until
+          in: query
+          schema: { type: integer }
+        - name: host
+          in: query
+          description: Single or comma-separated host IDs.
+          schema: { type: string }
+        - name: addGlobal
+          in: query
+          description: Set to 1 to include non-host-associated events.
+          schema: { type: integer, enum: [0, 1] }
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      operationId: createEvent
+      tags: [Events]
+      summary: Create an event
+      description: Create an event/annotation on the DPM timeline.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EventCreate' }
+            example:
+              start: 1462301121
+              type: "deploy"
+              message: "Deployed release 1.4.2"
+              level: "info"
+      responses:
+        '200': { description: The created event. }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /config/alerts:
+    get:
+      operationId: listAlerts
+      tags: [Alerts]
+      summary: List alerts
+      responses:
+        '200': { description: A list of alerts. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      operationId: createAlert
+      tags: [Alerts]
+      summary: Create an alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Alert' }
+      responses:
+        '200': { description: The created alert. }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /config/alerts/{id}:
+    put:
+      operationId: updateAlert
+      tags: [Alerts]
+      summary: Update an alert
+      parameters:
+        - $ref: '#/components/parameters/AlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Alert' }
+      responses:
+        '200': { description: The updated alert. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      operationId: deleteAlert
+      tags: [Alerts]
+      summary: Delete an alert
+      parameters:
+        - $ref: '#/components/parameters/AlertId'
+      responses:
+        '204': { description: Alert deleted. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /config/alerts/{id}/config:
+    get:
+      operationId: getAlertConfig
+      tags: [Alerts]
+      summary: Get alert configuration
+      parameters:
+        - $ref: '#/components/parameters/AlertId'
+      responses:
+        '200': { description: The alert configuration. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateAlertConfig
+      tags: [Alerts]
+      summary: Update alert configuration
+      parameters:
+        - $ref: '#/components/parameters/AlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        '200': { description: The updated alert configuration. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /config/integrations:
+    get:
+      operationId: listIntegrations
+      tags: [Alerts]
+      summary: List alert integrations
+      responses:
+        '200': { description: A list of configured integrations. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /config/destinations:
+    get:
+      operationId: listDestinations
+      tags: [Alerts]
+      summary: List alert destinations
+      responses:
+        '200': { description: A list of alert destinations. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /config/alert-opts/policy:
+    get:
+      operationId: listAlertPolicies
+      tags: [Alerts]
+      summary: List alert policies
+      responses:
+        '200': { description: A list of alert policies. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /config/alert-opts/durations:
+    get:
+      operationId: listAlertDurations
+      tags: [Alerts]
+      summary: List alert durations
+      responses:
+        '200': { description: A list of alert durations. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Per-environment API token created in DPM Settings → API Tokens and passed
+        as `Authorization: Bearer <API_TOKEN>`. Tokens are role-scoped (RBAC).
+  parameters:
+    HostId:
+      name: hostId
+      in: path
+      required: true
+      description: Numeric host ID.
+      schema: { type: integer }
+    AlertId:
+      name: id
+      in: path
+      required: true
+      description: Alert ID.
+      schema: { type: integer }
+  responses:
+    BadRequest:
+      description: The request was malformed or missing required fields.
+    Unauthorized:
+      description: Missing or invalid API token.
+    Forbidden:
+      description: The token's role does not permit this action.
+    NotFound:
+      description: The requested resource does not exist.
+  schemas:
+    Host:
+      type: object
+      properties:
+        id: { type: integer }
+        uuid: { type: string }
+        name: { type: string }
+        type: { type: string }
+        tags: { type: array, items: { type: string } }
+        lastSeen: { type: integer, description: Unix timestamp }
+    HostList:
+      type: object
+      properties:
+        data: { type: array, items: { $ref: '#/components/schemas/Host' } }
+    HostUpdate:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        tags: { type: array, items: { type: string } }
+    Metric:
+      type: object
+      properties:
+        name: { type: string }
+        firstSeen: { type: integer }
+        lastSeen: { type: integer }
+    MetricList:
+      type: object
+      properties:
+        data: { type: array, items: { $ref: '#/components/schemas/Metric' } }
+    Series:
+      type: object
+      properties:
+        metric: { type: string }
+        series: { type: array, items: { type: number } }
+        rank: { type: integer }
+        total: { type: integer }
+    SeriesList:
+      type: object
+      properties:
+        data: { type: array, items: { $ref: '#/components/schemas/Series' } }
+    Query:
+      type: object
+      properties:
+        id: { type: string }
+        digest: { type: string }
+        firstSeen: { type: integer }
+        lastSeen: { type: integer }
+    QueryList:
+      type: object
+      properties:
+        data: { type: array, items: { $ref: '#/components/schemas/Query' } }
+    Event:
+      type: object
+      properties:
+        start: { type: integer }
+        uuid: { type: string }
+        host: { type: integer }
+        type: { type: string }
+        duration: { type: integer }
+        level: { type: string, enum: [info, warn, crit] }
+        digest: { type: string }
+        message: { type: string }
+    EventList:
+      type: object
+      properties:
+        data: { type: array, items: { $ref: '#/components/schemas/Event' } }
+    EventCreate:
+      type: object
+      required: [start, type, message]
+      properties:
+        start: { type: integer, description: Unix timestamp }
+        type: { type: string }
+        message: { type: string }
+        host: { type: integer }
+        duration: { type: integer }
+        level: { type: string, enum: [info, warn, crit] }
+    Alert:
+      type: object
+      properties:
+        name: { type: string }
+        annotations: { type: string }
+        policy: { type: string }
+        type: { type: integer, description: "1=event, 2=threshold" }
+        destinations: { type: array, items: { type: integer } }
+        disabled: { type: integer, enum: [0, 1] }

@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/vividcortex-openapi.yml
+docs: https://docs.vividcortex.com/api/basics/api-tokens/
+summary:
+  types:
+  - http
+  api_key_in:
+  - header
+  notes: >-
+    The v2 REST API authenticates with a per-environment Bearer API token created in the
+    DPM web app under Settings → API Tokens. Tokens are role-scoped (RBAC) and should be
+    treated as secrets; compromised tokens can be rotated from the API Tokens page. The
+    token's environment scopes every call — there is no separate tenant/account parameter.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    Per-environment API token passed as `Authorization: Bearer <API_TOKEN>`. Created in
+    DPM Settings → API Tokens; role-based (RBAC). Agent tokens are explicitly discouraged
+    for API use.
+  header: Authorization
+  format: "Bearer <API_TOKEN>"
+  sources:
+  - openapi/vividcortex-openapi.yml
+app_authentication:
+  note: >-
+    The DPM web application (distinct from the API) supports email/password login plus
+    Google and GitHub OAuth, optional mandatory OAuth for a G Suite/GitHub org, and SAML
+    SSO (Okta, OneLogin, Azure AD) for Premium-tier organizations. The API itself uses
+    only the Bearer API token above — there is no OAuth2/OIDC client flow for API access.
+  docs: https://docs.vividcortex.com/general-reference/authentication/

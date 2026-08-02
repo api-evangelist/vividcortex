@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vividcortex.com/api/
+docs: https://docs.vividcortex.com/api/
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: "Bearer <API_TOKEN>"
+  scope: per-environment
+  ref: authentication/vividcortex-authentication.yml
+base_url: https://app.vividcortex.com/api/v2
+response_envelope:
+  style: data-wrapped
+  shape: 'All list/collection responses wrap results in a top-level `data` array.'
+  example: '{ "data": [ { ... } ] }'
+time_parameters:
+  description: >-
+    Most read endpoints accept `from`/`until` time bounds expressed either as a relative
+    offset in seconds (e.g. -3600 for one hour ago, 0 for now) or as an absolute Unix
+    timestamp (seconds).
+  params: [from, until]
+pagination:
+  style: offset-cursor
+  params:
+  - name: limit
+    note: Number of results to return (max 20000 for metrics/queries).
+  - name: offset
+    note: Cursor; for queries the offset is the query hex ID, for metrics an opaque cursor.
+  response_signal:
+    header: x-vc-meta-more
+    note: Response header indicating whether additional results are available.
+filtering:
+  description: Wildcard/text filtering on several collection endpoints.
+  examples:
+  - 'metrics: `filter=os.disk.*` wildcard on metric name'
+  - 'queries: `filter=^select` text filter supporting ^, $, *'
+  - 'queries: `tags=key=value` space-separated key=value tag pairs'
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key mechanism is documented. Mutations use REST verbs (PUT for updates,
+    DELETE for deletes, POST to create events/alerts); PUT/DELETE are naturally idempotent
+    by resource ID, but there is no explicit Idempotency-Key header contract.
+encoding:
+  notes:
+  - 'Query sample `text` fields are returned base64-encoded.'
+  - 'Set header `X-Indent: true` for pretty-printed JSON responses.'
+  - 'Accept: application/json'
+versioning:
+  scheme: uri-path
+  current: v2
+  ref: lifecycle/vividcortex-lifecycle.yml
+errors:
+  ref: errors/vividcortex-problem-types.yml
+  note: Standard HTTP status codes; 401 on missing/invalid token, 403 on insufficient RBAC role.
+rate_limits:
+  documented: false
+  note: No published numeric rate limits found in the public API reference.

@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vividcortex.com/
+versioning:
+  scheme: uri-path
+  current: v2
+  base_url: https://app.vividcortex.com/api/v2
+  docs: https://docs.vividcortex.com/api/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal API deprecation/sunset policy is published in the public reference.
+sla:
+  url: null
+  note: No public SLA/uptime target found; DPM is a SolarWinds commercial product with contractual SLAs.
+status_page: https://dpm.statuspage.io/
+changelog: https://docs.vividcortex.com/changelog/
+deprecated_operations: []
+notes:
+  - VividCortex was acquired by SolarWinds in December 2019 and is now sold as SolarWinds Database Performance Monitor (DPM).
+  - The public changelog's most recent dated entry is 2021-06-08.

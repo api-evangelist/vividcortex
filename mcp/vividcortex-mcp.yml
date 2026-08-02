@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/vividcortex-openapi.yml
+note: >-
+  No official hosted/remote MCP server was found for VividCortex / SolarWinds DPM. This is a
+  candidate tool surface derived one-to-one from the documented v2 REST operations, suitable
+  for wrapping the API behind an MCP server.
+server:
+  name: vividcortex
+  transport: http
+tools:
+- name: list_hosts
+  description: List monitored hosts within a time window.
+  source_operation: openapi/vividcortex-openapi.yml#listHosts
+- name: update_host
+  description: Update a host's name, description, or tags.
+  source_operation: openapi/vividcortex-openapi.yml#updateHost
+- name: delete_host
+  description: Delete a host and free its license.
+  source_operation: openapi/vividcortex-openapi.yml#deleteHost
+- name: list_metrics
+  description: List active metrics with wildcard filtering and pagination.
+  source_operation: openapi/vividcortex-openapi.yml#listMetrics
+- name: get_metric_series
+  description: Fetch interpolated time-series data (and top-N ranked metrics).
+  source_operation: openapi/vividcortex-openapi.yml#getMetricSeries
+- name: list_queries
+  description: List recently-seen query digests with text/tag filtering.
+  source_operation: openapi/vividcortex-openapi.yml#listQueries
+- name: get_query
+  description: Fetch a single query digest by ID.
+  source_operation: openapi/vividcortex-openapi.yml#getQuery
+- name: get_query_samples
+  description: Fetch captured samples for a query.
+  source_operation: openapi/vividcortex-openapi.yml#getQuerySamples
+- name: list_events
+  description: Retrieve timeline events.
+  source_operation: openapi/vividcortex-openapi.yml#listEvents
+- name: create_event
+  description: Create a timeline event/annotation.
+  source_operation: openapi/vividcortex-openapi.yml#createEvent
+- name: list_alerts
+  description: List configured alerts.
+  source_operation: openapi/vividcortex-openapi.yml#listAlerts
+- name: create_alert
+  description: Create an alert.
+  source_operation: openapi/vividcortex-openapi.yml#createAlert
+- name: update_alert
+  description: Update an alert.
+  source_operation: openapi/vividcortex-openapi.yml#updateAlert
+- name: delete_alert
+  description: Delete an alert.
+  source_operation: openapi/vividcortex-openapi.yml#deleteAlert
+- name: get_alert_config
+  description: Get an alert's configuration.
+  source_operation: openapi/vividcortex-openapi.yml#getAlertConfig
+- name: list_destinations
+  description: List alert destinations.
+  source_operation: openapi/vividcortex-openapi.yml#listDestinations
+- name: list_integrations
+  description: List alert integrations.
+  source_operation: openapi/vividcortex-openapi.yml#listIntegrations

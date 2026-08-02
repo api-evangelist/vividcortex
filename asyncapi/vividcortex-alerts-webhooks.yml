@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.vividcortex.com/how-to-use-vividcortex/integrations/
+spec_type: Webhooks
+note: >-
+  VividCortex / SolarWinds DPM has no published AsyncAPI document. Its event surface is the
+  alerting system: alerts fire on thresholds or events and are pushed outbound to configured
+  destinations/integrations. This captures that webhook/notification surface as documented; it
+  is not a fabricated AsyncAPI.
+webhooks:
+  description: >-
+    Alerts (event-type or threshold-type) are delivered to one or more configured destinations.
+    Destinations and integrations are managed via the v2 config API and the DPM app.
+  trigger_types:
+  - event
+  - threshold
+  levels: [info, warn, crit]
+  delivery_channels:
+  - Email
+  - Slack
+  - PagerDuty
+  - Opsgenie
+  - Webhook (generic HTTP)
+  config_api:
+    list_destinations: openapi/vividcortex-openapi.yml#listDestinations
+    list_integrations: openapi/vividcortex-openapi.yml#listIntegrations
+    manage_alerts:
+    - openapi/vividcortex-openapi.yml#listAlerts
+    - openapi/vividcortex-openapi.yml#createAlert
+    - openapi/vividcortex-openapi.yml#updateAlert
+  docs:
+  - https://docs.vividcortex.com/how-to-use-vividcortex/integrations/
+  - https://docs.vividcortex.com/how-to-use-vividcortex/alerts/
+  - https://docs.vividcortex.com/how-to-use-vividcortex/app-integrations/

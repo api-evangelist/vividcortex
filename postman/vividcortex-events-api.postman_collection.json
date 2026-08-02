@@ -1,0 +1,386 @@
+{
+  "info": {
+    "_postman_id": "73089365-a83e-43a8-8dbd-3e09cc373bfb",
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Events API",
+    "description": "REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ \u2014 every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.\n\nContact Support:\n Name: SolarWinds DPM Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:27:47.000Z",
+    "updatedAt": "2026-07-28T03:27:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-73089365-a83e-43a8-8dbd-3e09cc373bfb"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "Retrieve events",
+          "id": "a4110f58-3255-4d43-9fe6-f3f625d61668",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?from=<integer>&until=<integer>&host=<string>&addGlobal=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "until",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Single or comma-separated host IDs.",
+                  "key": "host",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Set to 1 to include non-host-associated events.",
+                  "key": "addGlobal",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "808a24c0-2281-45a5-9399-1839b21a740a",
+              "name": "A list of events.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?from=<integer>&until=<integer>&host=<string>&addGlobal=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Single or comma-separated host IDs.",
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to 1 to include non-host-associated events.",
+                      "key": "addGlobal",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"start\": \"<integer>\",\n      \"uuid\": \"<string>\",\n      \"host\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"duration\": \"<integer>\",\n      \"level\": \"crit\",\n      \"digest\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"start\": \"<integer>\",\n      \"uuid\": \"<string>\",\n      \"host\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"duration\": \"<integer>\",\n      \"level\": \"crit\",\n      \"digest\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:27:47.000Z",
+              "updatedAt": "2026-07-28T03:27:47.000Z",
+              "uid": "35240-808a24c0-2281-45a5-9399-1839b21a740a"
+            },
+            {
+              "id": "3bb332a2-928b-4d53-8df3-c78b9ffd5c1d",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?from=<integer>&until=<integer>&host=<string>&addGlobal=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Single or comma-separated host IDs.",
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Set to 1 to include non-host-associated events.",
+                      "key": "addGlobal",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:47.000Z",
+              "updatedAt": "2026-07-28T03:27:47.000Z",
+              "uid": "35240-3bb332a2-928b-4d53-8df3-c78b9ffd5c1d"
+            }
+          ],
+          "createdAt": "2026-07-28T03:27:47.000Z",
+          "updatedAt": "2026-07-28T03:27:47.000Z",
+          "uid": "35240-a4110f58-3255-4d43-9fe6-f3f625d61668"
+        },
+        {
+          "name": "Create an event",
+          "id": "70b788f9-61de-4109-bc52-95d0497199f5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"host\": \"<integer>\",\n  \"duration\": \"<integer>\",\n  \"level\": \"crit\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ]
+            },
+            "description": "Create an event/annotation on the DPM timeline."
+          },
+          "response": [
+            {
+              "id": "f69fb5cb-5039-4c21-a32c-533622e93831",
+              "name": "The created event.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"host\": \"<integer>\",\n  \"duration\": \"<integer>\",\n  \"level\": \"crit\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:47.000Z",
+              "updatedAt": "2026-07-28T03:27:47.000Z",
+              "uid": "35240-f69fb5cb-5039-4c21-a32c-533622e93831"
+            },
+            {
+              "id": "c581ee5a-313b-4063-ba6d-f25c06b28bdc",
+              "name": "The request was malformed or missing required fields.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"host\": \"<integer>\",\n  \"duration\": \"<integer>\",\n  \"level\": \"crit\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:47.000Z",
+              "updatedAt": "2026-07-28T03:27:47.000Z",
+              "uid": "35240-c581ee5a-313b-4063-ba6d-f25c06b28bdc"
+            },
+            {
+              "id": "31353bed-17ee-4c2b-b359-ebc644332efa",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"message\": \"<string>\",\n  \"host\": \"<integer>\",\n  \"duration\": \"<integer>\",\n  \"level\": \"crit\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:47.000Z",
+              "updatedAt": "2026-07-28T03:27:47.000Z",
+              "uid": "35240-31353bed-17ee-4c2b-b359-ebc644332efa"
+            }
+          ],
+          "createdAt": "2026-07-28T03:27:47.000Z",
+          "updatedAt": "2026-07-28T03:27:47.000Z",
+          "uid": "35240-70b788f9-61de-4109-bc52-95d0497199f5"
+        }
+      ],
+      "id": "34af813a-55df-4ae9-9244-c13ba9a63921",
+      "createdAt": "2026-07-28T03:27:47.000Z",
+      "updatedAt": "2026-07-28T03:27:47.000Z",
+      "uid": "35240-34af813a-55df-4ae9-9244-c13ba9a63921"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.vividcortex.com/api/v2"
+    }
+  ]
+}

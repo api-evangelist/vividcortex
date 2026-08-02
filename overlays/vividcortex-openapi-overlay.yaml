@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for VividCortex DPM API
+  version: 1.0.0
+# generated: '2026-07-21'
+# method: generated
+extends: openapi/vividcortex-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-api-source: reconstructed-from-docs
+    x-provider-status: acquired-by-solarwinds-2019
+- target: $.info
+  update:
+    x-authentication: authentication/vividcortex-authentication.yml
+    x-conventions: conventions/vividcortex-conventions.yml
+    x-errors: errors/vividcortex-problem-types.yml
+    x-lifecycle: lifecycle/vividcortex-lifecycle.yml
+    x-data-model: data-model/vividcortex-data-model.yml
+- target: $.info
+  update:
+    x-agentic-access: agentic-access/vividcortex-agentic-access.yml
+    x-pagination:
+      style: offset-cursor
+      more_header: x-vc-meta-more

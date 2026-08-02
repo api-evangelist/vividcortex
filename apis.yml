@@ -1,23 +1,209 @@
 aid: vividcortex
 name: VividCortex
-description: VividCortex is a company surfaced as a portfolio company of battery-ventures and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  VividCortex is a SaaS database performance monitoring platform, now part of SolarWinds and
+  marketed as SolarWinds Database Performance Monitor (DPM). It uses lightweight per-host agents
+  to capture and analyze every query executed against MySQL, PostgreSQL, MongoDB, Redis, Amazon
+  Aurora, and SQL Server workloads with sub-second, always-on visibility and minimal overhead.
+  DPM surfaces query analysis, profiling, fault detection, adaptive alerting, and time-series
+  metrics through a web application and a public REST API (v2) that exposes hosts, metrics and
+  series data, observed queries and samples, timeline events, and alert configuration. VividCortex
+  was acquired by SolarWinds in December 2019; this profile was surfaced as a portfolio company of
+  Battery Ventures and enriched by the API Evangelist pipeline from the provider's live public
+  documentation at docs.vividcortex.com.
 url: https://raw.githubusercontent.com/api-evangelist/vividcortex/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/2809667?v=4
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Database
+- Performance Monitoring
+- Observability
+- Monitoring
+- APM
+- Database Performance
+- SQL
+- DevOps
+- SolarWinds
+apis:
+- aid: vividcortex:vividcortex-alerts-api
+  name: VividCortex Alerts API
+  description: Alert configuration, destinations, and integrations.
+  humanURL: https://docs.vividcortex.com/api/
+  baseURL: https://app.vividcortex.com/api/v2
+  tags:
+  - Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/vividcortex-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.vividcortex.com/api/
+  - type: APIReference
+    url: https://docs.vividcortex.com/api/
+  - type: Authentication
+    url: https://docs.vividcortex.com/api/basics/api-tokens/
+- aid: vividcortex:vividcortex-events-api
+  name: VividCortex Events API
+  description: Events and annotations on the DPM timeline.
+  humanURL: https://docs.vividcortex.com/api/
+  baseURL: https://app.vividcortex.com/api/v2
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/vividcortex-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.vividcortex.com/api/
+  - type: APIReference
+    url: https://docs.vividcortex.com/api/
+  - type: Authentication
+    url: https://docs.vividcortex.com/api/basics/api-tokens/
+- aid: vividcortex:vividcortex-hosts-api
+  name: VividCortex Hosts API
+  description: Managing the database and OS hosts monitored by DPM agents.
+  humanURL: https://docs.vividcortex.com/api/
+  baseURL: https://app.vividcortex.com/api/v2
+  tags:
+  - Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/vividcortex-hosts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.vividcortex.com/api/
+  - type: APIReference
+    url: https://docs.vividcortex.com/api/
+  - type: Authentication
+    url: https://docs.vividcortex.com/api/basics/api-tokens/
+- aid: vividcortex:vividcortex-metrics-api
+  name: VividCortex Metrics API
+  description: Active metric discovery and time-series data.
+  humanURL: https://docs.vividcortex.com/api/
+  baseURL: https://app.vividcortex.com/api/v2
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/vividcortex-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.vividcortex.com/api/
+  - type: APIReference
+    url: https://docs.vividcortex.com/api/
+  - type: Authentication
+    url: https://docs.vividcortex.com/api/basics/api-tokens/
+- aid: vividcortex:vividcortex-queries-api
+  name: VividCortex Queries API
+  description: Observed queries, query digests, and query samples.
+  humanURL: https://docs.vividcortex.com/api/
+  baseURL: https://app.vividcortex.com/api/v2
+  tags:
+  - Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/vividcortex-queries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.vividcortex.com/api/
+  - type: APIReference
+    url: https://docs.vividcortex.com/api/
+  - type: Authentication
+    url: https://docs.vividcortex.com/api/basics/api-tokens/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/vividcortex/overview
+- type: DeveloperPortal
+  url: https://docs.vividcortex.com/
+- type: Documentation
+  url: https://docs.vividcortex.com/
+- type: APIReference
+  url: https://docs.vividcortex.com/api/
+- type: GettingStarted
+  url: https://docs.vividcortex.com/how-to-use-vividcortex/quick-start-guide/
+- type: StatusPage
+  url: https://dpm.statuspage.io/
+- type: ChangeLog
+  url: https://docs.vividcortex.com/changelog/
+- type: GitHubOrganization
+  url: https://github.com/VividCortex
+- type: SignUp
+  url: https://app.vividcortex.com/sign-up
+- type: Login
+  url: https://app.vividcortex.com/login
+- type: Support
+  url: https://docs.vividcortex.com/getting-started/troubleshooting/
+- type: TermsOfService
+  url: https://www.solarwinds.com/legal/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.solarwinds.com/legal/privacy
+- type: Authentication
+  url: authentication/vividcortex-authentication.yml
+- type: Conventions
+  url: conventions/vividcortex-conventions.yml
+- type: ErrorCatalog
+  url: errors/vividcortex-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/vividcortex-lifecycle.yml
+- type: ChangeLog
+  url: changelog/vividcortex-changelog.yml
+- type: MCPServer
+  url: mcp/vividcortex-mcp.yml
+- type: LLMsTxt
+  url: llms/vividcortex-llms.txt
+- type: Overlay
+  url: overlays/vividcortex-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/vividcortex-conformance.yml
+- type: DataModel
+  url: data-model/vividcortex-data-model.yml
+- type: Components
+  url: components/vividcortex-components.yml
+- type: Webhooks
+  url: asyncapi/vividcortex-alerts-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/vividcortex-agentic-access.yml
+- type: DomainSecurity
+  url: security/vividcortex-domain-security.yml
+- type: Packages
+  url: packages/vividcortex-packages.yml
+- type: VulnerabilityDisclosure
+  url: security/vividcortex-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.solarwinds.com/information-security/vulnerability-disclosure-policy
+- type: TrustCenter
+  url: security/vividcortex-trust-center.yml
+- type: Compliance
+  url: https://www.solarwinds.com/trust-center
+- type: Pricing
+  url: https://www.solarwinds.com/pricing
+- type: Blog
+  url: https://www.solarwinds.com/blog

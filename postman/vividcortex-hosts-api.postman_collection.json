@@ -1,0 +1,728 @@
+{
+  "info": {
+    "_postman_id": "ae1e1598-21b5-4742-84ac-912aae46b040",
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Hosts API",
+    "description": "REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ \u2014 every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.\n\nContact Support:\n Name: SolarWinds DPM Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:27:48.000Z",
+    "updatedAt": "2026-07-28T03:27:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae1e1598-21b5-4742-84ac-912aae46b040"
+  },
+  "item": [
+    {
+      "name": "hosts",
+      "item": [
+        {
+          "name": "{hostId}",
+          "item": [
+            {
+              "name": "Update a host",
+              "id": "5fce29be-53c9-4c33-8052-a5474b0598b1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/hosts/:hostId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hosts",
+                    ":hostId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "064f157b-c38f-454e-a5dc-1313d1de91ea",
+                      "key": "hostId",
+                      "value": "<integer>",
+                      "description": "(Required) Numeric host ID."
+                    }
+                  ]
+                },
+                "description": "Update a host's name, description, or tags."
+              },
+              "response": [
+                {
+                  "id": "ea6251e0-317c-433e-b46f-e7a0016952ab",
+                  "name": "The updated host.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-ea6251e0-317c-433e-b46f-e7a0016952ab"
+                },
+                {
+                  "id": "cfb6924d-c5c6-4815-bfce-1bb4bbc4da6c",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-cfb6924d-c5c6-4815-bfce-1bb4bbc4da6c"
+                },
+                {
+                  "id": "f7de022d-7c2e-42e1-a74f-caecde6587be",
+                  "name": "The token's role does not permit this action.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-f7de022d-7c2e-42e1-a74f-caecde6587be"
+                },
+                {
+                  "id": "404eebc1-4485-480b-8fcd-5f2d83d751fa",
+                  "name": "The requested resource does not exist.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-404eebc1-4485-480b-8fcd-5f2d83d751fa"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:48.000Z",
+              "updatedAt": "2026-07-28T03:27:48.000Z",
+              "uid": "35240-5fce29be-53c9-4c33-8052-a5474b0598b1"
+            },
+            {
+              "name": "Delete a host",
+              "id": "1fdfed43-a768-414b-b4ae-e5e2c174a2a2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts/:hostId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hosts",
+                    ":hostId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "53633460-13a9-4ad8-8ad9-2fa4093e3a4a",
+                      "key": "hostId",
+                      "value": "<integer>",
+                      "description": "(Required) Numeric host ID."
+                    }
+                  ]
+                },
+                "description": "Delete the specified host, shut down its agents, and free the license. Child hosts are also deleted."
+              },
+              "response": [
+                {
+                  "id": "aaad3392-efa7-40f3-914c-919943aff9e3",
+                  "name": "Host deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-aaad3392-efa7-40f3-914c-919943aff9e3"
+                },
+                {
+                  "id": "3db17354-092c-4ccc-8ba0-d852d27fb49b",
+                  "name": "Missing or invalid API token.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-3db17354-092c-4ccc-8ba0-d852d27fb49b"
+                },
+                {
+                  "id": "812c3b3d-c2ce-425a-8687-0bdec6d59c64",
+                  "name": "The token's role does not permit this action.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-812c3b3d-c2ce-425a-8687-0bdec6d59c64"
+                },
+                {
+                  "id": "e94107b9-03fd-4dee-88e8-3ecdd8845cb5",
+                  "name": "The requested resource does not exist.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hosts/:hostId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosts",
+                        ":hostId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "hostId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:27:48.000Z",
+                  "updatedAt": "2026-07-28T03:27:48.000Z",
+                  "uid": "35240-e94107b9-03fd-4dee-88e8-3ecdd8845cb5"
+                }
+              ],
+              "createdAt": "2026-07-28T03:27:48.000Z",
+              "updatedAt": "2026-07-28T03:27:48.000Z",
+              "uid": "35240-1fdfed43-a768-414b-b4ae-e5e2c174a2a2"
+            }
+          ],
+          "id": "67f7754f-c5aa-436a-8797-4aa479a0bec7",
+          "createdAt": "2026-07-28T03:27:48.000Z",
+          "updatedAt": "2026-07-28T03:27:48.000Z",
+          "uid": "35240-67f7754f-c5aa-436a-8797-4aa479a0bec7"
+        },
+        {
+          "name": "List monitored hosts",
+          "id": "9225963a-c0d0-4c25-aa1c-3a39dd1dd782",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/hosts?from=<integer>&until=<integer>&nest=tags&id=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hosts"
+              ],
+              "query": [
+                {
+                  "description": "Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp.",
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp.",
+                  "key": "until",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Set to `tags` to include host tags in the response.",
+                  "key": "nest",
+                  "value": "tags"
+                },
+                {
+                  "description": "Retrieve a single host by its numeric ID.",
+                  "key": "id",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Return the hosts monitored during the requested time window, optionally nesting tags."
+          },
+          "response": [
+            {
+              "id": "d6b51307-3b66-4ad8-a80c-b735ae90385d",
+              "name": "A list of hosts.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts?from=<integer>&until=<integer>&nest=tags&id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hosts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp.",
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp.",
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Set to `tags` to include host tags in the response.",
+                      "key": "nest",
+                      "value": "tags"
+                    },
+                    {
+                      "description": "Retrieve a single host by its numeric ID.",
+                      "key": "id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"uuid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lastSeen\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"uuid\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lastSeen\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:27:48.000Z",
+              "updatedAt": "2026-07-28T03:27:48.000Z",
+              "uid": "35240-d6b51307-3b66-4ad8-a80c-b735ae90385d"
+            },
+            {
+              "id": "99d4f676-b7e4-49d1-ad55-1f97513dd287",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts?from=<integer>&until=<integer>&nest=tags&id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hosts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp.",
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp.",
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Set to `tags` to include host tags in the response.",
+                      "key": "nest",
+                      "value": "tags"
+                    },
+                    {
+                      "description": "Retrieve a single host by its numeric ID.",
+                      "key": "id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:48.000Z",
+              "updatedAt": "2026-07-28T03:27:48.000Z",
+              "uid": "35240-99d4f676-b7e4-49d1-ad55-1f97513dd287"
+            },
+            {
+              "id": "1c841364-ae8b-4f57-afa9-aa607c786961",
+              "name": "The token's role does not permit this action.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hosts?from=<integer>&until=<integer>&nest=tags&id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hosts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp.",
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp.",
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Set to `tags` to include host tags in the response.",
+                      "key": "nest",
+                      "value": "tags"
+                    },
+                    {
+                      "description": "Retrieve a single host by its numeric ID.",
+                      "key": "id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:27:48.000Z",
+              "updatedAt": "2026-07-28T03:27:48.000Z",
+              "uid": "35240-1c841364-ae8b-4f57-afa9-aa607c786961"
+            }
+          ],
+          "createdAt": "2026-07-28T03:27:48.000Z",
+          "updatedAt": "2026-07-28T03:27:48.000Z",
+          "uid": "35240-9225963a-c0d0-4c25-aa1c-3a39dd1dd782"
+        }
+      ],
+      "id": "66e3d325-3dd5-4820-93c3-5817118c0d4b",
+      "createdAt": "2026-07-28T03:27:48.000Z",
+      "updatedAt": "2026-07-28T03:27:48.000Z",
+      "uid": "35240-66e3d325-3dd5-4820-93c3-5817118c0d4b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.vividcortex.com/api/v2"
+    }
+  ]
+}
