@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Queries API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recently-seen queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/queries",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results (max 20000)."
+              },
+              {
+                "name": "new",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination using the query hex ID."
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated host IDs."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Text filter supporting `^`, `$`, and `*`."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Space-separated key=value pairs."
+              }
+            ]
+          },
+          "docs": "Return query digests observed during the time window, with text/tag filtering."
+        },
+        {
+          "info": {
+            "name": "Fetch a query digest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/queries/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to include query tags."
+              }
+            ]
+          },
+          "docs": "Fetch a query digest by ID"
+        },
+        {
+          "info": {
+            "name": "Fetch query samples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/queries/samples",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query ID in base10."
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "detail",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to omit text/plan fields."
+              }
+            ]
+          },
+          "docs": "Return captured samples for a query. The `text` field is base64-encoded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

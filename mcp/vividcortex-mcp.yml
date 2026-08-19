@@ -2,10 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/vividcortex-openapi.yml
-note: >-
-  No official hosted/remote MCP server was found for VividCortex / SolarWinds DPM. This is a
-  candidate tool surface derived one-to-one from the documented v2 REST operations, suitable
-  for wrapping the API behind an MCP server.
+note: No official hosted/remote MCP server was found for VividCortex / SolarWinds DPM. This is a candidate
+  tool surface derived one-to-one from the documented v2 REST operations, suitable for wrapping the API
+  behind an MCP server.
 server:
   name: vividcortex
   transport: http
@@ -61,3 +60,9 @@ tools:
 - name: list_integrations
   description: List alert integrations.
   source_operation: openapi/vividcortex-openapi.yml#listIntegrations
+deployment:
+  mode: none
+  verified: derived
+  tools: 17
+  checked: '2026-08-12'
+  source: catalog MCP census

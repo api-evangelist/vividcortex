@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Hosts API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monitored hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/hosts",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start time as a relative offset in seconds (e.g. -3600) or an absolute Unix timestamp."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "End time as a relative offset in seconds (e.g. 0) or an absolute Unix timestamp."
+              },
+              {
+                "name": "nest",
+                "value": "",
+                "type": "query",
+                "description": "Set to `tags` to include host tags in the response."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve a single host by its numeric ID."
+              }
+            ]
+          },
+          "docs": "Return the hosts monitored during the requested time window, optionally nesting tags."
+        },
+        {
+          "info": {
+            "name": "Update a host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.vividcortex.com/api/v2/hosts/:hostId",
+            "params": [
+              {
+                "name": "hostId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric host ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a host's name, description, or tags."
+        },
+        {
+          "info": {
+            "name": "Delete a host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.vividcortex.com/api/v2/hosts/:hostId",
+            "params": [
+              {
+                "name": "hostId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric host ID."
+              }
+            ]
+          },
+          "docs": "Delete the specified host, shut down its agents, and free the license. Child hosts are also deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

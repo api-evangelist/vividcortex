@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Events API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/events",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Single or comma-separated host IDs."
+              },
+              {
+                "name": "addGlobal",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to include non-host-associated events."
+              }
+            ]
+          },
+          "docs": "Retrieve events"
+        },
+        {
+          "info": {
+            "name": "Create an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.vividcortex.com/api/v2/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an event/annotation on the DPM timeline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

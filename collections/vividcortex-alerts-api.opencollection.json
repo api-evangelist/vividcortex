@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/config/alerts"
+          },
+          "docs": "List alerts"
+        },
+        {
+          "info": {
+            "name": "Create an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.vividcortex.com/api/v2/config/alerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an alert"
+        },
+        {
+          "info": {
+            "name": "Update an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.vividcortex.com/api/v2/config/alerts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alert ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an alert"
+        },
+        {
+          "info": {
+            "name": "Delete an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.vividcortex.com/api/v2/config/alerts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alert ID."
+              }
+            ]
+          },
+          "docs": "Delete an alert"
+        },
+        {
+          "info": {
+            "name": "Get alert configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/config/alerts/:id/config",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alert ID."
+              }
+            ]
+          },
+          "docs": "Get alert configuration"
+        },
+        {
+          "info": {
+            "name": "Update alert configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.vividcortex.com/api/v2/config/alerts/:id/config",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alert ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update alert configuration"
+        },
+        {
+          "info": {
+            "name": "List alert integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/config/integrations"
+          },
+          "docs": "List alert integrations"
+        },
+        {
+          "info": {
+            "name": "List alert destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/config/destinations"
+          },
+          "docs": "List alert destinations"
+        },
+        {
+          "info": {
+            "name": "List alert policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/config/alert-opts/policy"
+          },
+          "docs": "List alert policies"
+        },
+        {
+          "info": {
+            "name": "List alert durations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/config/alert-opts/durations"
+          },
+          "docs": "List alert durations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

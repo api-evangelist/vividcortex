@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Metrics API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List active metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/metrics",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Wildcard pattern for metric names (e.g. `os.disk.*`). Required when `host`/`from`/`until` are used."
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Host ID(s) to query."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of metrics to return (max 20000)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "new",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to return only newly-seen metrics."
+              }
+            ]
+          },
+          "docs": "List metrics seen during the time window. Supports wildcard filtering and cursor pagination via `offset`; the `x-vc-meta-more` response header signals whether more results are available."
+        },
+        {
+          "info": {
+            "name": "Fetch metric time-series data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.vividcortex.com/api/v2/metrics/series",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Host ID(s), single or comma-separated."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Metric name(s) or template pattern (e.g. `host.queries.*.*.time_us`)."
+              },
+              {
+                "name": "samplesize",
+                "value": "",
+                "type": "query",
+                "description": "Data resolution in seconds; must be a factor of 60."
+              },
+              {
+                "name": "separatehosts",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to split the response by host."
+              },
+              {
+                "name": "rank",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 for descending order by sum value (top-N)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of series to return."
+              }
+            ]
+          },
+          "docs": "Return interpolated time-series values for one or more metrics over a time range. Also used for \"top-N\" ranked queries via `rank=1` and a metric template pattern."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

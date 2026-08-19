@@ -1,0 +1,498 @@
+{
+  "item": [
+    {
+      "id": "8989464a-f50e-4163-bf01-a2da0a1106cf",
+      "name": "Metrics",
+      "description": {
+        "content": "Active metric discovery and time-series data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "932ed202-cead-4f16-b206-2ee526ae2342",
+          "name": "List active metrics",
+          "request": {
+            "name": "List active metrics",
+            "description": {
+              "content": "List metrics seen during the time window. Supports wildcard filtering and cursor pagination via `offset`; the `x-vc-meta-more` response header signals whether more results are available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Wildcard pattern for metric names (e.g. `os.disk.*`). Required when `host`/`from`/`until` are used."
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Host ID(s) to query."
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of metrics to return (max 20000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<string>",
+                  "description": "Pagination cursor."
+                },
+                {
+                  "disabled": false,
+                  "key": "new",
+                  "value": "<integer>",
+                  "description": "Set to 1 to return only newly-seen metrics."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c84b5bb-f682-4413-9527-86b0a9d6b6d4",
+              "name": "A list of active metrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "new",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Indicates whether additional results are available.",
+                  "key": "x-vc-meta-more",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"os.disk.dr1.read_sectors\",\n      \"firstSeen\": 1448036400,\n      \"lastSeen\": 1462294800\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0653f72a-655b-40c2-9191-bee361d8a270",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "new",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be0d6cee-bed1-48be-b59f-d2e67cfe7dd7",
+          "name": "Fetch metric time-series data",
+          "request": {
+            "name": "Fetch metric time-series data",
+            "description": {
+              "content": "Return interpolated time-series values for one or more metrics over a time range. Also used for \"top-N\" ranked queries via `rank=1` and a metric template pattern.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "series"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Host ID(s), single or comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "Metric name(s) or template pattern (e.g. `host.queries.*.*.time_us`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "samplesize",
+                  "value": "<integer>",
+                  "description": "Data resolution in seconds; must be a factor of 60."
+                },
+                {
+                  "disabled": false,
+                  "key": "separatehosts",
+                  "value": "<integer>",
+                  "description": "Set to 1 to split the response by host."
+                },
+                {
+                  "disabled": false,
+                  "key": "rank",
+                  "value": "<integer>",
+                  "description": "Set to 1 for descending order by sum value (top-N)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of series to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bda26c69-a22f-4a7f-961b-1073d2026f71",
+              "name": "Time-series data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "samplesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "separatehosts",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "rank",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"string\",\n      \"series\": [\n        7078.067993465157,\n        2503.0578343584466\n      ],\n      \"rank\": 6452,\n      \"total\": 8567\n    },\n    {\n      \"metric\": \"string\",\n      \"series\": [\n        7056.037402750556,\n        6516.484539803665\n      ],\n      \"rank\": 5498,\n      \"total\": 8303\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e35e7e1-2150-41de-8a03-bded64e69a90",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "samplesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "separatehosts",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "rank",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.vividcortex.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4060c474-af5f-43f1-874c-b3be189a1a8f",
+    "name": "VividCortex (SolarWinds Database Performance Monitor) Alerts Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.\n\nContact Support:\n Name: SolarWinds DPM Support",
+      "type": "text/plain"
+    }
+  }
+}
