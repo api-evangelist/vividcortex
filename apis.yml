@@ -73,6 +73,8 @@ apis:
   humanURL: https://docs.vividcortex.com/api/
   baseURL: https://app.vividcortex.com/api/v2
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -121,6 +123,8 @@ apis:
   humanURL: https://docs.vividcortex.com/api/
   baseURL: https://app.vividcortex.com/api/v2
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
