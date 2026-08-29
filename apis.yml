@@ -12,6 +12,18 @@ description: >-
   Battery Ventures and enriched by the API Evangelist pipeline from the provider's live public
   documentation at docs.vividcortex.com.
 url: https://raw.githubusercontent.com/api-evangelist/vividcortex/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
