@@ -1,16 +1,14 @@
 aid: vividcortex
 name: VividCortex
-description: >-
-  VividCortex is a SaaS database performance monitoring platform, now part of SolarWinds and
-  marketed as SolarWinds Database Performance Monitor (DPM). It uses lightweight per-host agents
-  to capture and analyze every query executed against MySQL, PostgreSQL, MongoDB, Redis, Amazon
-  Aurora, and SQL Server workloads with sub-second, always-on visibility and minimal overhead.
-  DPM surfaces query analysis, profiling, fault detection, adaptive alerting, and time-series
-  metrics through a web application and a public REST API (v2) that exposes hosts, metrics and
-  series data, observed queries and samples, timeline events, and alert configuration. VividCortex
-  was acquired by SolarWinds in December 2019; this profile was surfaced as a portfolio company of
-  Battery Ventures and enriched by the API Evangelist pipeline from the provider's live public
-  documentation at docs.vividcortex.com.
+description: VividCortex is a SaaS database performance monitoring platform, now part of SolarWinds and
+  marketed as SolarWinds Database Performance Monitor (DPM). It uses lightweight per-host agents to capture
+  and analyze every query executed against MySQL, PostgreSQL, MongoDB, Redis, Amazon Aurora, and SQL Server
+  workloads with sub-second, always-on visibility and minimal overhead. DPM surfaces query analysis, profiling,
+  fault detection, adaptive alerting, and time-series metrics through a web application and a public REST
+  API (v2) that exposes hosts, metrics and series data, observed queries and samples, timeline events,
+  and alert configuration. VividCortex was acquired by SolarWinds in December 2019; this profile was surfaced
+  as a portfolio company of Battery Ventures and enriched by the API Evangelist pipeline from the provider's
+  live public documentation at docs.vividcortex.com.
 url: https://raw.githubusercontent.com/api-evangelist/vividcortex/refs/heads/main/apis.yml
 deliveryModel:
   model: saas
@@ -51,7 +49,7 @@ x-enrichment:
   pass: local-v1
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-09-16'
 tags:
 - Company
 - Database
@@ -154,6 +152,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Website
+  url: https://vividcortex.com
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/vividcortex/overview
 - type: DeveloperPortal
@@ -192,7 +192,10 @@ common:
   url: changelog/vividcortex-changelog.yml
 - type: X-MCPServerCandidate
   url: mcp/vividcortex-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/vividcortex-llms.txt
 - type: Overlay
