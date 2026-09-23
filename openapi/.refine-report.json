@@ -1,11 +1,7 @@
 {
   "provider": "vividcortex",
   "sources": [
-    "vividcortex-alerts-api-openapi.yml",
-    "vividcortex-events-api-openapi.yml",
-    "vividcortex-hosts-api-openapi.yml",
-    "vividcortex-metrics-api-openapi.yml",
-    "vividcortex-queries-api-openapi.yml"
+    "_original/vividcortex-openapi.yml"
   ],
   "outputs": [
     "vividcortex-alerts-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "vividcortex-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "vividcortex-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vividcortex-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vividcortex-hosts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vividcortex-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vividcortex-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

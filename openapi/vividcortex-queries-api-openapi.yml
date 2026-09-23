@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: VividCortex (SolarWinds Database Performance Monitor) Alerts Queries API
+  title: VividCortex (SolarWinds Database Performance Monitor)…
   version: '2.0'
-  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM). Programmatic access to monitored hosts, metrics and time-series data, observed queries and their samples, events/annotations, and alert configuration. Modeled faithfully from the public reference at https://docs.vividcortex.com/api/ — every path, method, parameter and example response below is taken from the published documentation. VividCortex does not publish a machine-readable OpenAPI document; this is an API Evangelist reconstruction for discovery and governance and is not an authoritative provider artifact.
+  description: REST API v2 for VividCortex / SolarWinds Database Performance Monitor (DPM).
   contact:
     name: SolarWinds DPM Support
     url: https://docs.vividcortex.com/
@@ -152,13 +152,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    QueryList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Query'
     Query:
       type: object
       properties:
@@ -170,11 +163,18 @@ components:
           type: integer
         lastSeen:
           type: integer
+    QueryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Query'
   responses:
-    NotFound:
-      description: The requested resource does not exist.
     Unauthorized:
       description: Missing or invalid API token.
+    NotFound:
+      description: The requested resource does not exist.
   securitySchemes:
     bearerAuth:
       type: http
