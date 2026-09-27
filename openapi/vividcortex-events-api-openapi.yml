@@ -79,13 +79,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    EventList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     EventCreate:
       type: object
       required:
@@ -133,6 +126,13 @@ components:
           type: string
         message:
           type: string
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
   responses:
     Unauthorized:
       description: Missing or invalid API token.

@@ -152,6 +152,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    QueryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Query'
     Query:
       type: object
       properties:
@@ -163,13 +170,6 @@ components:
           type: integer
         lastSeen:
           type: integer
-    QueryList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Query'
   responses:
     Unauthorized:
       description: Missing or invalid API token.
