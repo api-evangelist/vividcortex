@@ -113,18 +113,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+    Forbidden:
+      description: The token's role does not permit this action.
+    NotFound:
+      description: The requested resource does not exist.
   schemas:
-    HostUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
     HostList:
       type: object
       properties:
@@ -150,13 +146,17 @@ components:
         lastSeen:
           type: integer
           description: Unix timestamp
-  responses:
-    NotFound:
-      description: The requested resource does not exist.
-    Forbidden:
-      description: The token's role does not permit this action.
-    Unauthorized:
-      description: Missing or invalid API token.
+    HostUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
   parameters:
     HostId:
       name: hostId

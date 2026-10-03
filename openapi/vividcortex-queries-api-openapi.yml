@@ -171,10 +171,10 @@ components:
         lastSeen:
           type: integer
   responses:
-    Unauthorized:
-      description: Missing or invalid API token.
     NotFound:
       description: The requested resource does not exist.
+    Unauthorized:
+      description: Missing or invalid API token.
   securitySchemes:
     bearerAuth:
       type: http

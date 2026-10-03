@@ -79,6 +79,29 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Event:
+      type: object
+      properties:
+        start:
+          type: integer
+        uuid:
+          type: string
+        host:
+          type: integer
+        type:
+          type: string
+        duration:
+          type: integer
+        level:
+          type: string
+          enum:
+          - info
+          - warn
+          - crit
+        digest:
+          type: string
+        message:
+          type: string
     EventCreate:
       type: object
       required:
@@ -103,29 +126,6 @@ components:
           - info
           - warn
           - crit
-    Event:
-      type: object
-      properties:
-        start:
-          type: integer
-        uuid:
-          type: string
-        host:
-          type: integer
-        type:
-          type: string
-        duration:
-          type: integer
-        level:
-          type: string
-          enum:
-          - info
-          - warn
-          - crit
-        digest:
-          type: string
-        message:
-          type: string
     EventList:
       type: object
       properties:
