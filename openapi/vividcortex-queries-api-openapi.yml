@@ -151,14 +151,12 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: The requested resource does not exist.
+    Unauthorized:
+      description: Missing or invalid API token.
   schemas:
-    QueryList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Query'
     Query:
       type: object
       properties:
@@ -170,11 +168,13 @@ components:
           type: integer
         lastSeen:
           type: integer
-  responses:
-    NotFound:
-      description: The requested resource does not exist.
-    Unauthorized:
-      description: Missing or invalid API token.
+    QueryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Query'
   securitySchemes:
     bearerAuth:
       type: http

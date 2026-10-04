@@ -161,12 +161,12 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
+    NotFound:
+      description: The requested resource does not exist.
     Unauthorized:
       description: Missing or invalid API token.
     BadRequest:
       description: The request was malformed or missing required fields.
-    NotFound:
-      description: The requested resource does not exist.
   parameters:
     AlertId:
       name: id

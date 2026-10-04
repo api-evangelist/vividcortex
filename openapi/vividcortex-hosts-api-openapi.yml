@@ -114,12 +114,12 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid API token.
     Forbidden:
       description: The token's role does not permit this action.
     NotFound:
       description: The requested resource does not exist.
+    Unauthorized:
+      description: Missing or invalid API token.
   schemas:
     HostList:
       type: object
