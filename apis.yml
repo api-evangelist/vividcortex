@@ -152,6 +152,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/vividcortex-capability-edges.yml
+  name: VividCortex Business Capability Map
 - type: Website
   url: https://vividcortex.com
 - type: PostmanWorkspace
