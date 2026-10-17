@@ -144,6 +144,9 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
   schemas:
     MetricList:
       type: object
@@ -152,19 +155,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metric'
-    Series:
-      type: object
-      properties:
-        metric:
-          type: string
-        series:
-          type: array
-          items:
-            type: number
-        rank:
-          type: integer
-        total:
-          type: integer
     Metric:
       type: object
       properties:
@@ -181,9 +171,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Series'
-  responses:
-    Unauthorized:
-      description: Missing or invalid API token.
+    Series:
+      type: object
+      properties:
+        metric:
+          type: string
+        series:
+          type: array
+          items:
+            type: number
+        rank:
+          type: integer
+        total:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

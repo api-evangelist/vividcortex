@@ -78,7 +78,42 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+    BadRequest:
+      description: The request was malformed or missing required fields.
   schemas:
+    Event:
+      type: object
+      properties:
+        start:
+          type: integer
+        uuid:
+          type: string
+        host:
+          type: integer
+        type:
+          type: string
+        duration:
+          type: integer
+        level:
+          type: string
+          enum:
+          - info
+          - warn
+          - crit
+        digest:
+          type: string
+        message:
+          type: string
+    EventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
     EventCreate:
       type: object
       required:
@@ -103,41 +138,6 @@ components:
           - info
           - warn
           - crit
-    EventList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    Event:
-      type: object
-      properties:
-        start:
-          type: integer
-        uuid:
-          type: string
-        host:
-          type: integer
-        type:
-          type: string
-        duration:
-          type: integer
-        level:
-          type: string
-          enum:
-          - info
-          - warn
-          - crit
-        digest:
-          type: string
-        message:
-          type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API token.
-    BadRequest:
-      description: The request was malformed or missing required fields.
   securitySchemes:
     bearerAuth:
       type: http

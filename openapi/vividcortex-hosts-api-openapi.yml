@@ -114,20 +114,32 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Forbidden:
-      description: The token's role does not permit this action.
-    NotFound:
-      description: The requested resource does not exist.
     Unauthorized:
       description: Missing or invalid API token.
+    NotFound:
+      description: The requested resource does not exist.
+    Forbidden:
+      description: The token's role does not permit this action.
+  parameters:
+    HostId:
+      name: hostId
+      in: path
+      required: true
+      description: Numeric host ID.
+      schema:
+        type: integer
   schemas:
-    HostList:
+    HostUpdate:
       type: object
       properties:
-        data:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
           type: array
           items:
-            $ref: '#/components/schemas/Host'
+            type: string
     Host:
       type: object
       properties:
@@ -146,25 +158,13 @@ components:
         lastSeen:
           type: integer
           description: Unix timestamp
-    HostUpdate:
+    HostList:
       type: object
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        tags:
+        data:
           type: array
           items:
-            type: string
-  parameters:
-    HostId:
-      name: hostId
-      in: path
-      required: true
-      description: Numeric host ID.
-      schema:
-        type: integer
+            $ref: '#/components/schemas/Host'
   securitySchemes:
     bearerAuth:
       type: http
